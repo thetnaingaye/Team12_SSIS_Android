@@ -11,5 +11,6 @@ public class MainActivity extends Activity {
         //If else. If is Clerk, Show clerk layout
         //If DeptHead, Show DeptHead layout
         setContentView(R.layout.activity_main);
+        //tttt
     }
 }
