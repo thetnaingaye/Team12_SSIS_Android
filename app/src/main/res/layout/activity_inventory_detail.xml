@@ -6,4 +6,136 @@
     android:layout_height="match_parent"
     tools:context="sg.edu.nus.iss.team12.ssis.team12_ssis.InventoryDetailActivity">
 
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="218dp"
+        android:layout_height="187dp"
+        android:layout_marginTop="108dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView_ItemCode"
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:gravity="right"
+                android:paddingBottom="5dp"
+                android:text="Item Code :"
+                tools:layout_editor_absoluteX="55dp"
+                tools:layout_editor_absoluteY="154dp" />
+
+            <TextView
+                android:id="@+id/textView_ItemCode_Value"
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:gravity="left"
+                android:paddingBottom="5dp"
+                android:paddingLeft="20dp"
+                android:text="C007"
+                tools:layout_editor_absoluteX="55dp"
+                tools:layout_editor_absoluteY="154dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView_Category"
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:gravity="right"
+                android:paddingBottom="5dp"
+                android:text="Category :"
+                tools:layout_editor_absoluteX="55dp"
+                tools:layout_editor_absoluteY="154dp" />
+
+            <TextView
+                android:id="@+id/textView_Category_Value"
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:gravity="left"
+                android:paddingBottom="5dp"
+                android:paddingLeft="20dp"
+                android:text="Visual Aid"
+                tools:layout_editor_absoluteX="55dp"
+                tools:layout_editor_absoluteY="154dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView_Description"
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:gravity="right"
+                android:paddingBottom="5dp"
+                android:text="Description :"
+                tools:layout_editor_absoluteX="55dp"
+                tools:layout_editor_absoluteY="154dp" />
+
+            <TextView
+                android:id="@+id/textView_Description_Value"
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:gravity="left"
+                android:paddingBottom="5dp"
+                android:paddingLeft="20dp"
+                android:text="Chalkboard Eraser"
+                tools:layout_editor_absoluteX="55dp"
+                tools:layout_editor_absoluteY="154dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </TableLayout>
+
+    <ImageView
+        android:id="@+id/imageView_Title"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="36dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitXY"
+        android:src="@drawable/brandimg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="ChalkBoard Eraser"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton_Map"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="36dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitXY"
+        android:src="@drawable/brandimg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.253"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+
+
 </android.support.constraint.ConstraintLayout>
