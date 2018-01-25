@@ -42,5 +42,14 @@ public class InventoryDetailActivity extends Activity {
             }
         });
 
+        Button btnStockCard = findViewById(R.id.button_StockCard);
+        btnStockCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                Intent intent = new Intent(InventoryDetailActivity.this,StockCardActivity.class);
+                startActivity(intent);
+
+            }
+        });
     }
 }

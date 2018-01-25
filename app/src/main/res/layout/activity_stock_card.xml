@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="sg.edu.nus.iss.team12.ssis.team12_ssis.StockCardActivity">
+
+    <ImageView
+        android:id="@+id/imageView_Title"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitXY"
+        android:src="@drawable/brandimg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="ChalkBoard Eraser"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.363"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="195dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="68dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView_ItemCode"
+                android:layout_width="fill_parent"
+                android:layout_height="20dp"
+                android:gravity="left"
+                android:paddingBottom="1dp"
+                android:text="Item Code :"
+                android:textColor="@android:color/holo_blue_dark"
+                tools:layout_editor_absoluteX="55dp"
+                tools:layout_editor_absoluteY="154dp" />
+
+            <TextView
+                android:id="@+id/textView_ItemCode_Value"
+                android:layout_width="fill_parent"
+                android:layout_height="20dp"
+                android:gravity="left"
+                android:paddingBottom="1dp"
+                android:paddingLeft="20dp"
+                android:text="C007"
+                tools:layout_editor_absoluteX="55dp"
+                tools:layout_editor_absoluteY="154dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView_S1"
+                android:layout_width="fill_parent"
+                android:layout_height="20dp"
+                android:gravity="left"
+                android:paddingBottom="1dp"
+                android:text="Supplier1 :"
+                android:textColor="@android:color/holo_blue_dark"
+                tools:layout_editor_absoluteX="55dp"
+                tools:layout_editor_absoluteY="154dp" />
+
+            <TextView
+                android:id="@+id/textView_S1_Value"
+                android:layout_width="fill_parent"
+                android:layout_height="20dp"
+                android:gravity="left"
+                android:paddingBottom="1dp"
+                android:paddingLeft="20dp"
+                android:text="BANE"
+                tools:layout_editor_absoluteX="55dp"
+                tools:layout_editor_absoluteY="154dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView_S2"
+                android:layout_width="fill_parent"
+                android:layout_height="20dp"
+                android:gravity="left"
+                android:paddingBottom="1dp"
+                android:text="Supplier2 :"
+                android:textColor="@android:color/holo_blue_dark"
+                tools:layout_editor_absoluteX="55dp"
+                tools:layout_editor_absoluteY="154dp" />
+
+            <TextView
+                android:id="@+id/textView_S2_Value"
+                android:layout_width="fill_parent"
+                android:layout_height="20dp"
+                android:gravity="left"
+                android:paddingBottom="1dp"
+                android:paddingLeft="20dp"
+                android:text="CHEP"
+                tools:layout_editor_absoluteX="55dp"
+                tools:layout_editor_absoluteY="154dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView_S3"
+                android:layout_width="fill_parent"
+                android:layout_height="20dp"
+                android:gravity="left"
+                android:paddingBottom="1dp"
+                android:text="Supplier2 :"
+                android:textColor="@android:color/holo_blue_dark"
+                tools:layout_editor_absoluteX="55dp"
+                tools:layout_editor_absoluteY="154dp" />
+
+            <TextView
+                android:id="@+id/textView_S3_Value"
+                android:layout_width="fill_parent"
+                android:layout_height="20dp"
+                android:gravity="left"
+                android:paddingBottom="1dp"
+                android:paddingLeft="20dp"
+                android:text="ALPHA"
+                tools:layout_editor_absoluteX="55dp"
+                tools:layout_editor_absoluteY="154dp" />
+        </TableRow>
+    </TableLayout>
+
+
+    <TextView
+        android:id="@+id/textView_Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="30dp"
+        android:text="Date"
+        app:layout_constraintBottom_toTopOf="@+id/listView_StockCard"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_Desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="40dp"
+        android:text="Desc"
+        app:layout_constraintBottom_toTopOf="@+id/listView_StockCard"
+        app:layout_constraintStart_toEndOf="@+id/textView_Date" />
+
+    <TextView
+        android:id="@+id/textView_Type"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="80dp"
+        android:text="Type"
+        app:layout_constraintBottom_toTopOf="@+id/listView_StockCard"
+        app:layout_constraintStart_toEndOf="@+id/textView_Desc" />
+
+
+    <TextView
+        android:id="@+id/textView_Qty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="30dp"
+        android:text="Qty"
+        app:layout_constraintBottom_toTopOf="@+id/listView_StockCard"
+        app:layout_constraintStart_toEndOf="@+id/textView_Type" />
+
+    <TextView
+        android:id="@+id/textView_Balance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="30dp"
+        android:text="Balance"
+        app:layout_constraintBottom_toTopOf="@+id/listView_StockCard"
+        app:layout_constraintStart_toEndOf="@+id/textView_Qty" />
+
+    <ListView
+        android:id="@+id/listView_StockCard"
+        android:layout_width="353dp"
+        android:layout_height="317dp"
+        android:layout_marginTop="204dp"
+        android:divider="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_newAV"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/holo_blue_dark"
+        android:text="New"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listView_StockCard" />
+
+
+</android.support.constraint.ConstraintLayout>

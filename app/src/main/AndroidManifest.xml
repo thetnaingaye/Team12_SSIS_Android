@@ -25,7 +25,10 @@
         <activity android:name=".AcknowledgeByPin" />
         <activity android:name=".ViewRequisitionFormListActivity" />
         <activity android:name=".ViewRequisitionFormDetailsActivity" />
-        <activity android:name=".EmployeeRequisitionHistoryActivity"></activity>
+        <activity android:name=".EmployeeRequisitionHistoryActivity" />
+        <activity android:name=".StockCardActivity" />
+        <activity android:name=".AdjustmentVoucherActivity" />
+        <activity android:name=".DisbursementListActivity"></activity>
     </application>
 
 </manifest>

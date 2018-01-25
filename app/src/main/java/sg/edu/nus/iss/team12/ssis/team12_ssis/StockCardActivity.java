@@ -6,20 +6,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class CollectionListActivity extends Activity {
+public class StockCardActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //If else condition and set the header label to either "COLLECTIONS" or "OUTSTANDING DISBURSEMENT"
-        setContentView(R.layout.activity_collection_list);
-        Button btn = findViewById(R.id.button2);
-        btn.setOnClickListener(new View.OnClickListener() {
+        setContentView(R.layout.activity_stock_card);
+
+        Button btnNewAV = findViewById(R.id.button_newAV);
+        btnNewAV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                Intent intent = new Intent(CollectionListActivity.this,DisbursementListActivity.class);
+                Intent intent = new Intent(StockCardActivity.this,AdjustmentVoucherActivity.class);
                 startActivity(intent);
             }
         });
+
     }
 }

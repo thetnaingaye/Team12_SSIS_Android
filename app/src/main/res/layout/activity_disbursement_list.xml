@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="sg.edu.nus.iss.team12.ssis.team12_ssis.ViewDisbursementFormActivity">
+    tools:context="sg.edu.nus.iss.team12.ssis.team12_ssis.DisbursementListActivity">
 
     <ListView
         android:id="@+id/lv1"
@@ -16,18 +16,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="51dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="44dp"
-        android:text="Sign"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.768"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lv1" />
 
     <TextView
         android:id="@+id/textView"
@@ -35,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="48dp"
-        android:text="Items"
+        android:text="Disbursement ID"
         app:layout_constraintBottom_toTopOf="@+id/lv1"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -44,8 +32,8 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="68dp"
-        android:text="Requested Qty"
+        android:layout_marginStart="80dp"
+        android:text="Collection Date"
         app:layout_constraintBottom_toTopOf="@+id/lv1"
         app:layout_constraintStart_toEndOf="@+id/textView" />
 
@@ -61,18 +49,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="40dp"
-        android:text="Actual Qty"
-        app:layout_constraintBottom_toTopOf="@+id/lv1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.574"
-        app:layout_constraintStart_toEndOf="@+id/textView3" />
 
     <TextView
         android:id="@+id/textView5"
@@ -101,32 +77,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/textView_Date"
-                android:layout_width="fill_parent"
-                android:layout_height="20dp"
-                android:gravity="left"
-                android:paddingBottom="1dp"
-                android:text="Date :"
-                android:textColor="@android:color/holo_blue_dark"
-                tools:layout_editor_absoluteX="55dp"
-                tools:layout_editor_absoluteY="154dp" />
-
-            <TextView
-                android:id="@+id/textView_Date_Value"
-                android:layout_width="fill_parent"
-                android:layout_height="20dp"
-                android:gravity="left"
-                android:paddingBottom="1dp"
-                android:paddingLeft="20dp"
-                android:text="12 Jan 2018"
-                tools:layout_editor_absoluteX="55dp"
-                tools:layout_editor_absoluteY="154dp" />
-        </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
@@ -185,24 +135,16 @@
 
     </TableLayout>
 
-    <TextView
-        android:id="@+id/textView_Rep"
-        android:layout_width="116dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="16dp"
-        android:text="Representative :"
-        android:textColor="@android:color/holo_blue_dark"
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="View Details"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lv1" />
 
-    <TextView
-        android:id="@+id/textView_Rep_Value"
-        android:layout_width="116dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Mr. Sum"
-        app:layout_constraintStart_toEndOf="@+id/textView_Rep"
-        app:layout_constraintTop_toBottomOf="@+id/lv1" />
+
 </android.support.constraint.ConstraintLayout>

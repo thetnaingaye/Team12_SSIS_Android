@@ -17,9 +17,10 @@
         <TableLayout
             android:id="@+id/tableLayout"
             android:layout_width="269dp"
-            android:layout_height="247dp"
-            android:layout_marginTop="64dp"
+            android:layout_height="212dp"
+            android:layout_marginTop="68dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.619"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -30,21 +31,23 @@
                 <TextView
                     android:id="@+id/textView_ItemCode"
                     android:layout_width="fill_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="25dp"
                     android:gravity="right"
-                    android:paddingBottom="3dp"
+                    android:paddingBottom="2dp"
                     android:text="Item Code :"
+                    android:textColor="@android:color/holo_blue_dark"
                     tools:layout_editor_absoluteX="55dp"
                     tools:layout_editor_absoluteY="154dp" />
 
                 <TextView
                     android:id="@+id/textView_ItemCode_Value"
                     android:layout_width="fill_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="25dp"
                     android:gravity="left"
                     android:paddingBottom="3dp"
                     android:paddingLeft="20dp"
                     android:text="C007"
+
                     tools:layout_editor_absoluteX="55dp"
                     tools:layout_editor_absoluteY="154dp" />
             </TableRow>
@@ -56,21 +59,23 @@
                 <TextView
                     android:id="@+id/textView_Category"
                     android:layout_width="fill_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="25dp"
                     android:gravity="right"
                     android:paddingBottom="3dp"
                     android:text="Category :"
+                    android:textColor="@android:color/holo_blue_dark"
                     tools:layout_editor_absoluteX="55dp"
                     tools:layout_editor_absoluteY="154dp" />
 
                 <TextView
                     android:id="@+id/textView_Category_Value"
                     android:layout_width="fill_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="25dp"
                     android:gravity="left"
                     android:paddingBottom="3dp"
                     android:paddingLeft="20dp"
                     android:text="Visual Aid"
+
                     tools:layout_editor_absoluteX="55dp"
                     tools:layout_editor_absoluteY="154dp" />
             </TableRow>
@@ -82,17 +87,18 @@
                 <TextView
                     android:id="@+id/textView_Description"
                     android:layout_width="fill_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="25dp"
                     android:gravity="right"
                     android:paddingBottom="3dp"
                     android:text="Description :"
+                    android:textColor="@android:color/holo_blue_dark"
                     tools:layout_editor_absoluteX="55dp"
                     tools:layout_editor_absoluteY="154dp" />
 
                 <TextView
                     android:id="@+id/textView_Description_Value"
                     android:layout_width="fill_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="25dp"
                     android:gravity="left"
                     android:paddingBottom="3dp"
                     android:paddingLeft="20dp"
@@ -108,17 +114,18 @@
                 <TextView
                     android:id="@+id/textView_ReorderLevel"
                     android:layout_width="fill_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="25dp"
                     android:gravity="right"
                     android:paddingBottom="3dp"
                     android:text="Re-Order Level :"
+                    android:textColor="@android:color/holo_blue_dark"
                     tools:layout_editor_absoluteX="55dp"
                     tools:layout_editor_absoluteY="154dp" />
 
                 <TextView
                     android:id="@+id/textView_ReorderLevel_Value"
                     android:layout_width="fill_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="25dp"
                     android:gravity="left"
                     android:paddingBottom="3dp"
                     android:paddingLeft="20dp"
@@ -134,17 +141,18 @@
                 <TextView
                     android:id="@+id/textView_ReorderQty"
                     android:layout_width="fill_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="25dp"
                     android:gravity="right"
                     android:paddingBottom="3dp"
                     android:text="Re-Order Quantity :"
+                    android:textColor="@android:color/holo_blue_dark"
                     tools:layout_editor_absoluteX="55dp"
                     tools:layout_editor_absoluteY="154dp" />
 
                 <TextView
                     android:id="@+id/textView_ReorderQty_Value"
                     android:layout_width="fill_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="25dp"
                     android:gravity="left"
                     android:paddingBottom="3dp"
                     android:paddingLeft="20dp"
@@ -160,17 +168,18 @@
                 <TextView
                     android:id="@+id/textView_MeasurementUnit"
                     android:layout_width="fill_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="25dp"
                     android:gravity="right"
                     android:paddingBottom="3dp"
                     android:text="Measurement Unit :"
+                    android:textColor="@android:color/holo_blue_dark"
                     tools:layout_editor_absoluteX="55dp"
                     tools:layout_editor_absoluteY="154dp" />
 
                 <TextView
                     android:id="@+id/textView_MeasurementUnit_Value"
                     android:layout_width="fill_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="25dp"
                     android:gravity="left"
                     android:paddingBottom="3dp"
                     android:paddingLeft="20dp"
@@ -186,17 +195,18 @@
                 <TextView
                     android:id="@+id/textView_Location"
                     android:layout_width="fill_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="25dp"
                     android:gravity="right"
                     android:paddingBottom="3dp"
                     android:text="Location :"
+                    android:textColor="@android:color/holo_blue_dark"
                     tools:layout_editor_absoluteX="55dp"
                     tools:layout_editor_absoluteY="154dp" />
 
                 <TextView
                     android:id="@+id/textView_Location_Value"
                     android:layout_width="fill_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="25dp"
                     android:gravity="left"
                     android:paddingBottom="3dp"
                     android:paddingLeft="20dp"
@@ -212,17 +222,18 @@
                 <TextView
                     android:id="@+id/textView_QtyToTake"
                     android:layout_width="fill_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="25dp"
                     android:gravity="right"
                     android:paddingBottom="3dp"
                     android:text="Quantity To Take :"
+                    android:textColor="@android:color/holo_blue_dark"
                     tools:layout_editor_absoluteX="55dp"
                     tools:layout_editor_absoluteY="154dp" />
 
                 <TextView
                     android:id="@+id/textView_QtyToTake_Value"
                     android:layout_width="fill_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="25dp"
                     android:gravity="left"
                     android:paddingBottom="3dp"
                     android:paddingLeft="20dp"
@@ -276,11 +287,22 @@
             android:id="@+id/button_Allocate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:text="ALLOCATE"
             app:layout_constraintEnd_toEndOf="parent"
 
+            app:layout_constraintHorizontal_bias="0.318"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageButton_shelf" />
+
+        <Button
+            android:id="@+id/button_StockCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="100dp"
+            android:layout_marginStart="8dp"
+            android:text="STOCK CARD"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button_Allocate"
             app:layout_constraintTop_toBottomOf="@+id/imageButton_shelf" />
 
 
