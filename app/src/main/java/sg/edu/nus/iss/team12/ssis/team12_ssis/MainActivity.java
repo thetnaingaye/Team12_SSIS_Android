@@ -15,7 +15,7 @@ public class MainActivity extends Activity {
         //If else. If is Clerk, Show clerk layout
         //If DeptHead, Show DeptHead layout
         setContentView(R.layout.activity_main_clerk);
-        ImageButton imgBtn = (ImageButton) findViewById(R.id.imageButton1);
+        ImageButton imgBtn = (ImageButton) findViewById(R.id.imageButton_Main);
         imgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
@@ -23,5 +23,15 @@ public class MainActivity extends Activity {
                 startActivity(intent);
             }
         });
+
+        ImageButton imgBtn_Collection = (ImageButton) findViewById(R.id.imageButton_Collection);
+        imgBtn_Collection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                Intent intent = new Intent(MainActivity.this,CollectionListActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

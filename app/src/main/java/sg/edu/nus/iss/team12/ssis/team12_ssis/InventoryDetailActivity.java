@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,5 +31,16 @@ public class InventoryDetailActivity extends Activity {
                 d.show();
             }
         });
+
+        Button btnAllocate = findViewById(R.id.button_Allocate);
+        btnAllocate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                Intent intent = new Intent(InventoryDetailActivity.this,InventoryRetrievalListActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
     }
 }

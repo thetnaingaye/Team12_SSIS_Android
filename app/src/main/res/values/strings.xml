@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Team12_SSIS</string>
+
+
+    <string-array name="collectionPoints">
+        <item>Collection Point</item>
+        <item>Central Library</item>
+        <item>Bioengineering</item>
+        <item>Logic Museum</item>
+        <item>Environmental Science</item>
+        <item>Linguistics</item>
+        <item>Cafeteria</item>
+    </string-array>
 </resources>
