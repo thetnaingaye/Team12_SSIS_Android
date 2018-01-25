@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class InventoryDetailActivity extends Activity {
 
@@ -21,6 +22,8 @@ public class InventoryDetailActivity extends Activity {
                 final Dialog d = new Dialog(InventoryDetailActivity.this);
                 d.setContentView(R.layout.layout_level);
                 ImageView imgLevel = d.findViewById(R.id.imageView_Level);
+                TextView txtShelf = d.findViewById(R.id.textView_Shelf_Value);
+                txtShelf.setText("testing");
                 imgLevel.setImageResource(R.drawable.brandimg);
                 d.setCancelable(true);
 
