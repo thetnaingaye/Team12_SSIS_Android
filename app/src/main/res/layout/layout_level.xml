@@ -61,7 +61,7 @@
                 android:gravity="left"
                 android:paddingBottom="5dp"
                 android:paddingLeft="20dp"
-                android:text="4"
+                android:text="1"
                 tools:layout_editor_absoluteX="55dp"
                 tools:layout_editor_absoluteY="154dp" />
         </TableRow>
@@ -70,19 +70,19 @@
 
     <ImageView
         android:id="@+id/imageView_Level"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_marginStart="40dp"
+        android:layout_width="152dp"
+        android:layout_height="250dp"
+        android:layout_marginStart="0dp"
         android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tableLayout_Level"
         app:layout_constraintVertical_bias="0.319"
-        app:srcCompat="@drawable/brandimg" />
+        app:srcCompat="@drawable/s4" />
 
     <TextView
         android:id="@+id/textView3"

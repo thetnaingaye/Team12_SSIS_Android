@@ -210,7 +210,7 @@
                     android:gravity="left"
                     android:paddingBottom="3dp"
                     android:paddingLeft="20dp"
-                    android:text="H-14"
+                    android:text="H-1"
                     tools:layout_editor_absoluteX="55dp"
                     tools:layout_editor_absoluteY="154dp" />
             </TableRow>
@@ -271,13 +271,13 @@
 
         <ImageButton
             android:id="@+id/imageButton_shelf"
-            android:layout_width="339dp"
-            android:layout_height="284dp"
-            android:layout_marginStart="28dp"
+            android:layout_width="380dp"
+            android:layout_height="271dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="4dp"
             android:background="@android:color/transparent"
             android:scaleType="fitXY"
-            android:src="@drawable/f"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
