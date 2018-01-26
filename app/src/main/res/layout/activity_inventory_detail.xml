@@ -16,11 +16,11 @@
 
         <TableLayout
             android:id="@+id/tableLayout"
-            android:layout_width="269dp"
-            android:layout_height="212dp"
-            android:layout_marginTop="68dp"
+            android:layout_width="256dp"
+            android:layout_height="202dp"
+            android:layout_marginTop="88dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.619"
+            app:layout_constraintHorizontal_bias="0.651"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -41,7 +41,7 @@
 
                 <TextView
                     android:id="@+id/textView_ItemCode_Value"
-                    android:layout_width="fill_parent"
+                    android:layout_width="183dp"
                     android:layout_height="25dp"
                     android:gravity="left"
                     android:paddingBottom="3dp"
@@ -76,33 +76,6 @@
                     android:paddingLeft="20dp"
                     android:text="Visual Aid"
 
-                    tools:layout_editor_absoluteX="55dp"
-                    tools:layout_editor_absoluteY="154dp" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/textView_Description"
-                    android:layout_width="fill_parent"
-                    android:layout_height="25dp"
-                    android:gravity="right"
-                    android:paddingBottom="3dp"
-                    android:text="Description :"
-                    android:textColor="@android:color/holo_blue_dark"
-                    tools:layout_editor_absoluteX="55dp"
-                    tools:layout_editor_absoluteY="154dp" />
-
-                <TextView
-                    android:id="@+id/textView_Description_Value"
-                    android:layout_width="fill_parent"
-                    android:layout_height="25dp"
-                    android:gravity="left"
-                    android:paddingBottom="3dp"
-                    android:paddingLeft="20dp"
-                    android:text="Chalkboard Eraser"
                     tools:layout_editor_absoluteX="55dp"
                     tools:layout_editor_absoluteY="154dp" />
             </TableRow>
@@ -220,12 +193,39 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:id="@+id/textView_QtyInStock"
+                    android:layout_width="fill_parent"
+                    android:layout_height="25dp"
+                    android:gravity="right"
+                    android:paddingBottom="3dp"
+                    android:text="Units In Stock :"
+                    android:textColor="@android:color/holo_blue_dark"
+                    tools:layout_editor_absoluteX="55dp"
+                    tools:layout_editor_absoluteY="154dp" />
+
+                <TextView
+                    android:id="@+id/textView_QtyInStock_Value"
+                    android:layout_width="fill_parent"
+                    android:layout_height="25dp"
+                    android:gravity="left"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="20dp"
+                    android:text="12"
+                    tools:layout_editor_absoluteX="55dp"
+                    tools:layout_editor_absoluteY="154dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
                     android:id="@+id/textView_QtyToTake"
                     android:layout_width="fill_parent"
                     android:layout_height="25dp"
                     android:gravity="right"
                     android:paddingBottom="3dp"
-                    android:text="Quantity To Take :"
+                    android:text="Units To Retrieve :"
                     android:textColor="@android:color/holo_blue_dark"
                     tools:layout_editor_absoluteX="55dp"
                     tools:layout_editor_absoluteY="154dp" />
@@ -248,8 +248,8 @@
             android:id="@+id/imageView_Title"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:background="@android:color/transparent"
             android:scaleType="fitXY"
             android:src="@drawable/brandimg"
@@ -257,16 +257,15 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:id="@+id/textView_Description_Value"
+            android:layout_width="253dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
             android:text="ChalkBoard Eraser"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.363"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView_Title"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton

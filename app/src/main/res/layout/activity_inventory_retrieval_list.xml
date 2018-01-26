@@ -10,8 +10,8 @@
         android:id="@+id/imageView_Title"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
         android:scaleType="fitXY"
         android:src="@drawable/brandimg"
@@ -19,16 +19,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:id="@+id/textView_Description_Value"
+        android:layout_width="253dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:text="ChalkBoard Eraser"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.363"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView_Title"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -36,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="30dp"
         android:text="Department:"
         app:layout_constraintBottom_toTopOf="@+id/lv1"
         app:layout_constraintStart_toStartOf="parent" />
@@ -63,6 +62,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.423"
         app:layout_constraintStart_toEndOf="@+id/textView_RequestedQty" />
+
     <ListView
         android:id="@+id/lv1"
         android:layout_width="328dp"
@@ -75,7 +75,7 @@
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.346" />
+        app:layout_constraintVertical_bias="0.44" />
 
     <Button
         android:id="@+id/button_Save"
@@ -83,7 +83,7 @@
         android:layout_height="51dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="32dp"
         android:text="SAVE"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

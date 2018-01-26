@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,18 +12,48 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import sg.edu.nus.iss.team12.ssis.team12_ssis.model.InventoryCatalogue;
+import sg.edu.nus.iss.team12.ssis.team12_ssis.model.RetrivalItem;
 
 public class InventoryDetailActivity extends Activity {
+    List<RetrivalItem> retrivalList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory_detail);
         Bundle b = getIntent().getExtras();
-        HashMap<String,String> item = (HashMap<String, String>) b.get("item");
+        final HashMap<String,String> item = (HashMap<String, String>) b.get("item");
+        retrivalList = new ArrayList<>();
+        String uri = InventoryCatalogue.URI_SERVICE + "GetRelevantListByDept/"+item.get("ItemID");
+        new AsyncTask<String, Void, List<RetrivalItem>>() {
+
+            @Override
+            protected List<RetrivalItem> doInBackground(String... params) {
+
+                return RetrivalItem.jread(params[0]);
+            }
+
+            @Override
+            protected void onPostExecute(List<RetrivalItem> rlist) {
+                retrivalList = rlist;
+                TextView textQtyToTake = (TextView)findViewById(R.id.textView_QtyToTake_Value);
+                int unitsToRetrive = 0;
+                for (RetrivalItem r:rlist ) {
+
+                    unitsToRetrive +=Integer.parseInt(r.get("RequestedQty"));
+
+                }
+                textQtyToTake.setText(String.valueOf(unitsToRetrive));
+
+            }
+
+
+        }.execute(uri);
 
         showDetails(item);
 
@@ -33,6 +64,7 @@ public class InventoryDetailActivity extends Activity {
             @Override
             public void onClick(View arg0) {
                 Intent intent = new Intent(InventoryDetailActivity.this,InventoryRetrievalListActivity.class);
+                intent.putExtra("item",item);
                 startActivity(intent);
 
             }
@@ -82,8 +114,12 @@ public class InventoryDetailActivity extends Activity {
         TextView textLocation = (TextView)findViewById(R.id.textView_Location_Value);
         textLocation.setText(item.get("Shelf")+"-"+item.get("Level"));
 
-        TextView textQtyToTake = (TextView)findViewById(R.id.textView_QtyToTake_Value);
-        textQtyToTake.setText("--");
+
+
+        TextView textQtyInStock = (TextView)findViewById(R.id.textView_QtyInStock_Value);
+        textQtyInStock.setText(item.get("UnitsInStock"));
+
+
 
         ImageButton imgBtn = findViewById(R.id.imageButton_shelf);
         String imgName = item.get("Shelf").toLowerCase();
@@ -110,16 +146,4 @@ public class InventoryDetailActivity extends Activity {
         });
     }
 }
-//    put("ItemID",itemID);
-//    put("BIN",bin);
-//    put("BufferStockLevel", bufferstocklevel);
-//    put("CategoryID", catId);
-//    put("Description",desc);
-//    put("Discontinued",discon);
-//    put("Level",level);
-//    put("ReorderLevel",reorderlevel);
-//    put("ReorderQty",reorderqty);
-//    put("Shelf",shelf);
-//    put("UOM",uom);
-//    put("UnitsInStock",unitStock);
-//    put("UnitsOnOrder",unitOrder);
+

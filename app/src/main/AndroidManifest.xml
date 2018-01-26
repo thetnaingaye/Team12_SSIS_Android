@@ -19,7 +19,10 @@
         </activity>
         <activity android:name=".InventoryListActivity" />
         <activity android:name=".InventoryDetailActivity" />
-        <activity android:name=".InventoryRetrievalListActivity" />
+        <activity android:name=".InventoryRetrievalListActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden">
+
+        </activity>
         <activity android:name=".CollectionListActivity" />
         <activity android:name=".ViewDisbursementFormActivity" />
         <activity android:name=".AcknowledgeBySignatureActivity" />

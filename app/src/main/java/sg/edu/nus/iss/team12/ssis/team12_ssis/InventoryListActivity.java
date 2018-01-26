@@ -56,7 +56,7 @@ public class InventoryListActivity extends Activity implements AdapterView.OnIte
                                                        @Override
                                                        protected List<InventoryCatalogue> doInBackground(String... params) {
 
-                                                           return InventoryCatalogue.jread(params[0]).subList(0, 3);
+                                                           return InventoryCatalogue.jread(params[0]);
                                                        }
 
                                                        @Override
@@ -66,7 +66,7 @@ public class InventoryListActivity extends Activity implements AdapterView.OnIte
                                                        }
 
 
-                                                   }.execute(InventoryCatalogue.URI_SERVICE + "GetInventoryList");
+                                                   }.execute(InventoryCatalogue.URI_SERVICE + "GetRelevantItemList");
 
 
                                                } else {
