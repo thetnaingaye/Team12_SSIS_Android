@@ -18,7 +18,7 @@
             android:id="@+id/tableLayout"
             android:layout_width="256dp"
             android:layout_height="202dp"
-            android:layout_marginTop="88dp"
+            android:layout_marginTop="80dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.651"
             app:layout_constraintStart_toStartOf="parent"
