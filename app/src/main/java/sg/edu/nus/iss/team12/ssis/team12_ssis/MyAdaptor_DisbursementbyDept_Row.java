@@ -42,7 +42,7 @@ public class MyAdaptor_DisbursementbyDept_Row extends ArrayAdapter<Disbursement>
         textView_DisbursementID.setText(item.get("DisbursementID"));
 
         TextView textView_CollectionDate = v.findViewById(R.id.textView_CollectionDate_Value);
-        textView_CollectionDate.setText(item.get("WCFDetails"));
+        textView_CollectionDate.setText(item.get("CollectionDate"));
 
         return v;
     }
