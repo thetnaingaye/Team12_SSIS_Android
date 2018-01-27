@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,7 +19,7 @@ import sg.edu.nus.iss.team12.ssis.team12_ssis.model.Department;
 import sg.edu.nus.iss.team12.ssis.team12_ssis.model.Disbursement;
 import sg.edu.nus.iss.team12.ssis.team12_ssis.model.InventoryCatalogue;
 
-public class DisbursementListActivity extends Activity {
+public class DisbursementListActivity extends Activity implements AdapterView.OnItemClickListener{
 
     List<Disbursement> disbursementList = new ArrayList<>();
 
@@ -30,6 +32,7 @@ public class DisbursementListActivity extends Activity {
         final HashMap<String,String> item = (HashMap<String, String>) b.get("item");
 
         final ListView list = findViewById(R.id.lv1);
+        list.setOnItemClickListener(this);
 
         new AsyncTask<String, Void, List<Disbursement>>() {
 
@@ -75,13 +78,19 @@ public class DisbursementListActivity extends Activity {
 
         }.execute(uri);
 
-        Button btn = findViewById(R.id.button4);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                Intent intent = new Intent(DisbursementListActivity.this,ViewDisbursementFormActivity.class);
-                startActivity(intent);
-            }
-        });
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> av, View v, int position, long id) {
+
+        Disbursement item = (Disbursement) av.getAdapter().getItem(position);
+
+        Intent intent = new Intent(DisbursementListActivity.this, ViewDisbursementFormActivity.class);
+        Bundle b = new Bundle();
+        intent.putExtra("disbursement",item);
+        b.putSerializable("disbursement_detail", (Serializable) item.disbursementDetailsList);
+        intent.putExtras(b);
+        startActivity(intent);
+
     }
 }

@@ -13,30 +13,45 @@ import java.util.List;
  * Created by mmu1t on 27/1/2018.
  */
 
-public class Disbursement extends HashMap<String,String> {
+public class Disbursement extends HashMap<String,String> implements java.io.Serializable {
 
-    public Disbursement(String disbursementid,String collectiondate, String collectionpointid,String deptid,String repname)
+    public List<DisbursementDetail> disbursementDetailsList = new ArrayList<>();
+    public  Disbursement()
+    {
+
+    }
+
+    public Disbursement(String disbursementid,String collectiondate, String collectionpointid,String deptid,String repname,String status)
     {
         put("DisbursementID",disbursementid);
         put("CollectionDate",collectiondate);
         put("CollectionPointID",collectionpointid);
         put("DepartmentID",deptid);
-        put("RepresentativeName",deptid);
+        put("RepresentativeName",repname);
+        put("Status",status);
+
     }
 
     public static List<Disbursement> jread(String url) {
         List<Disbursement> list = new ArrayList<Disbursement>();
         JSONArray a = JSONParser.getJSONArrayFromUrl(url);
         try {
-            for (int i = 0; i < a.length(); i++) {
+            for (int i = 0; i < a.length(); i++)
+            {
                 JSONObject b = a.getJSONObject(i);
-                list.add(new Disbursement(
+                Disbursement d = new Disbursement(
                         Integer.toString(b.getInt("DisbursementID")),
                         b.getString("CollectionDate"),
                         Integer.toString(b.getInt("CollectionPointID")),
                         b.getString("DepartmentID"),
-                        b.getString("RepresentativeName")
-                ));
+                        b.getString("RepresentativeName"),
+                        b.getString("Status"));
+
+                JSONArray jsonArray_Details = b.getJSONArray("WCF_DisbursementListDetail");
+                d.disbursementDetailsList = DisbursementDetail.getDisbursementDetails(jsonArray_Details);
+
+                d.put("WCFDetails", Integer.toString(jsonArray_Details.length()));
+                list.add(d);
             }
         } catch (Exception e) {
             Log.e("Disbursement", "JSONArray error");
