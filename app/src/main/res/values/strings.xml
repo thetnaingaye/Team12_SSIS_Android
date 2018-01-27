@@ -11,4 +11,11 @@
         <item>Linguistics</item>
         <item>Cafeteria</item>
     </string-array>
+
+
+    <string-array name="addminus">
+        <item>Add</item>
+        <item>Minus</item>
+
+    </string-array>
 </resources>

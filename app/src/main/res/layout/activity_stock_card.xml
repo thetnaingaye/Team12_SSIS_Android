@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textView_Description_Value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -132,7 +132,7 @@
                 android:layout_height="20dp"
                 android:gravity="left"
                 android:paddingBottom="1dp"
-                android:text="Supplier2 :"
+                android:text="Supplier3 :"
                 android:textColor="@android:color/holo_blue_dark"
                 tools:layout_editor_absoluteX="55dp"
                 tools:layout_editor_absoluteY="154dp" />
@@ -176,7 +176,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="80dp"
+        android:layout_marginStart="100dp"
         android:text="Type"
         app:layout_constraintBottom_toTopOf="@+id/listView_StockCard"
         app:layout_constraintStart_toEndOf="@+id/textView_Desc" />
@@ -187,7 +187,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="40dp"
         android:text="Qty"
         app:layout_constraintBottom_toTopOf="@+id/listView_StockCard"
         app:layout_constraintStart_toEndOf="@+id/textView_Type" />
@@ -197,7 +197,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="20dp"
         android:text="Balance"
         app:layout_constraintBottom_toTopOf="@+id/listView_StockCard"
         app:layout_constraintStart_toEndOf="@+id/textView_Qty" />

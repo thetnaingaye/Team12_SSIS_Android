@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textView_Description_Value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -57,7 +57,7 @@
                 tools:layout_editor_absoluteY="154dp" />
 
             <TextView
-                android:id="@+id/textView_Date_Value"
+                android:id="@+id/textView_ItemCode_Value"
                 android:layout_width="71dp"
                 android:layout_height="match_parent"
                 android:gravity="left"
@@ -75,7 +75,7 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="44dp"
         android:text="Create NEW Inventory Adjustment Voucher Request"
         android:textColor="@android:color/holo_blue_dark"
         app:layout_constraintEnd_toEndOf="parent"
@@ -86,11 +86,11 @@
 
     <TableLayout
         android:id="@+id/tableLayout_AV"
-        android:layout_width="390dp"
+        android:layout_width="294dp"
         android:layout_height="79dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintHorizontal_bias="0.341"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6">
 
@@ -98,13 +98,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+
             <TextView
                 android:id="@+id/textView_AVType"
-                android:layout_width="140dp"
+                android:layout_width="121dp"
                 android:layout_height="40dp"
-                android:gravity="center"
+                android:gravity="left|center"
                 android:paddingBottom="1dp"
-                android:text="Adjustment Type :"
+                android:paddingLeft="2dp"
+                android:text="Add/Remove"
+
 
                 tools:layout_editor_absoluteX="55dp"
                 tools:layout_editor_absoluteY="154dp" />
@@ -113,76 +116,90 @@
                 android:id="@+id/textView_AVQty"
                 android:layout_width="105dp"
                 android:layout_height="40dp"
-                android:gravity="center"
+                android:gravity="left"
                 android:paddingBottom="1dp"
                 android:paddingLeft="20dp"
                 android:text="Qty"
                 tools:layout_editor_absoluteX="55dp"
                 tools:layout_editor_absoluteY="154dp" />
 
-            <TextView
-                android:id="@+id/textView_Reason"
-                android:layout_width="136dp"
-                android:layout_height="40dp"
-                android:gravity="center"
-                android:paddingBottom="1dp"
-                android:paddingLeft="20dp"
-                android:text="Reason"
-                tools:layout_editor_absoluteX="55dp"
-                tools:layout_editor_absoluteY="154dp" />
+
         </TableRow>
 
         <TableRow
-            android:layout_width="match_parent"
+            android:layout_width="246dp"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/textView_AVType_Value"
-                android:layout_width="140dp"
-                android:layout_height="20dp"
-                android:gravity="center"
-                android:paddingBottom="1dp"
-                android:text="+/-"
-                android:textColor="@android:color/holo_blue_dark"
-                tools:layout_editor_absoluteX="55dp"
-                tools:layout_editor_absoluteY="154dp" />
 
-            <TextView
-                android:id="@+id/textView_Dept_Value"
-                android:layout_width="fill_parent"
-                android:layout_height="20dp"
-                android:gravity="center"
-                android:paddingBottom="1dp"
-                android:paddingLeft="20dp"
-                android:text="-----"
-                tools:layout_editor_absoluteX="55dp"
-                tools:layout_editor_absoluteY="154dp" />
-
-            <TextView
-                android:id="@+id/textView_Reason_Value"
-                android:layout_width="136dp"
+            <Spinner
+                android:id="@+id/spinner_addminus"
+                android:layout_width="91dp"
                 android:layout_height="40dp"
-                android:gravity="center"
+                android:entries="@array/addminus"
                 android:paddingBottom="1dp"
-                android:paddingLeft="20dp"
-                android:text="------"
+                android:paddingLeft="2dp"
+                android:textAlignment="center"
                 tools:layout_editor_absoluteX="55dp"
                 tools:layout_editor_absoluteY="154dp" />
+
+            <EditText
+                android:id="@+id/editText_AVQty_Value"
+                android:layout_width="20dp"
+                android:layout_height="40dp"
+                android:ems="10"
+                android:inputType="number"
+                android:paddingBottom="1dp"
+                android:paddingLeft="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteX="55dp"
+                tools:layout_editor_absoluteY="154dp" />
+
+
         </TableRow>
 
 
     </TableLayout>
 
+    <TextView
+        android:id="@+id/textView_Reason"
+        android:layout_width="113dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="20dp"
+        android:gravity="left"
+        android:paddingBottom="1dp"
+        android:paddingLeft="20dp"
+        android:text="Reason"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout_AV" />
+
+    <EditText
+        android:id="@+id/editText_Desc_Value"
+        android:layout_width="323dp"
+        android:layout_height="39dp"
+        android:ems="10"
+        android:inputType="text"
+        android:paddingBottom="1dp"
+        android:paddingLeft="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_Reason" />
+
     <Button
         android:id="@+id/button_Save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="168dp"
-        android:text="SAVE"
+        android:layout_marginTop="192dp"
+        android:text="Send Request"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tableLayout_AV" />
+
+
 
 
 </android.support.constraint.ConstraintLayout>

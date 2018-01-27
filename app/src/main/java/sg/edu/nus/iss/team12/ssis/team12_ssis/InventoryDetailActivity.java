@@ -75,6 +75,7 @@ public class InventoryDetailActivity extends Activity {
             @Override
             public void onClick(View arg0) {
                 Intent intent = new Intent(InventoryDetailActivity.this,StockCardActivity.class);
+                intent.putExtra("item",item);
                 startActivity(intent);
 
             }

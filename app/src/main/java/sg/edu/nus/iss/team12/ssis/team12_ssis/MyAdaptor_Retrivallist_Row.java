@@ -40,7 +40,7 @@ public class MyAdaptor_Retrivallist_Row extends ArrayAdapter<RetrivalItem> {
         final View v = inflater.inflate(resource, null);
 
         final RetrivalItem item = items.get(position);
-        final EditText editText_Allocation = (EditText) v.findViewById(R.id.editText_Allocation_Value);;
+        final EditText editText_Allocation = (EditText) v.findViewById(R.id.editText_Allocation_Value);
 
         if (item != null) {
             final TextView textView_dept = (TextView) v.findViewById(R.id.textView_Dept_Value);
