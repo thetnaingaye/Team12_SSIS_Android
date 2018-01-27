@@ -3,13 +3,13 @@
 
 
     <string-array name="collectionPoints">
-        <item>Collection Point</item>
-        <item>Central Library</item>
-        <item>Bioengineering</item>
-        <item>Logic Museum</item>
-        <item>Environmental Science</item>
-        <item>Linguistics</item>
-        <item>Cafeteria</item>
+        <item>For All Collection Points</item>
+        <item>Administration Building, 9.30 A.M.</item>
+        <item>Management School, 11 A.M.</item>
+        <item>Medical School, 9.30 A.M.</item>
+        <item>Engineering School, 11 A.M.</item>
+        <item>Science School, 9.30 A.M.</item>
+        <item>University Hospital, 11 A.M.</item>
     </string-array>
 
 

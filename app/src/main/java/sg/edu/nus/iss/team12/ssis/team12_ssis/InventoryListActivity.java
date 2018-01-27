@@ -25,6 +25,7 @@ public class InventoryListActivity extends Activity implements AdapterView.OnIte
         setContentView(R.layout.activity_inventory_list);
         final ListView list = findViewById(R.id.lv1);
 
+
         new AsyncTask<String, Void, List<InventoryCatalogue>>() {
 
             @Override
@@ -36,7 +37,7 @@ public class InventoryListActivity extends Activity implements AdapterView.OnIte
             @Override
             protected void onPostExecute(List<InventoryCatalogue> resultInventoryList) {
 
-                list.setAdapter(new MyAdaptor_Inventorylist_Row(InventoryListActivity.this, R.layout.row_inventorylist, resultInventoryList));
+                     list.setAdapter(new MyAdaptor_Inventorylist_Row(InventoryListActivity.this, R.layout.row_inventorylist, resultInventoryList));
             }
 
 

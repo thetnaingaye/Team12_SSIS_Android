@@ -16,7 +16,10 @@ import java.util.HashMap;
 import java.util.List;
 
 
+import javax.crypto.spec.IvParameterSpec;
+
 import sg.edu.nus.iss.team12.ssis.team12_ssis.model.DisbursementDetail;
+import sg.edu.nus.iss.team12.ssis.team12_ssis.model.InventoryCatalogue;
 
 
 /**
@@ -45,7 +48,30 @@ public class MyAdaptor_Disbursement_Details extends ArrayAdapter<DisbursementDet
         final TextView textView_item = (TextView) v.findViewById(R.id.textView_ItemCode_Value);
         final TextView textView_reqQty = (TextView)v.findViewById(R.id.textView_RequestedQty_Value);
 
-        textView_item.setText((item.get("ItemID")));
+        new AsyncTask<String, Void, List<InventoryCatalogue>>() {
+
+            @Override
+            protected List<InventoryCatalogue> doInBackground(String... params) {
+
+                return InventoryCatalogue.jread(params[0]);
+            }
+
+            @Override
+            protected void onPostExecute(List<InventoryCatalogue> resultInventoryList) {
+                for(InventoryCatalogue inventoryCatalogue:resultInventoryList)
+                {
+                    if(inventoryCatalogue.get("ItemID").toString().equals(item.get("ItemID")))
+                    {
+                        textView_item.setText(inventoryCatalogue.get("Description"));
+                    }
+                }
+
+            }
+
+
+        }.execute(InventoryCatalogue.URI_SERVICE + "GetInventoryList");
+
+
 
         textView_reqQty.setText((item.get("QuantityRequested")));
 

@@ -10,7 +10,7 @@
         android:id="@+id/lv1"
         android:layout_width="353dp"
         android:layout_height="317dp"
-        android:layout_marginTop="184dp"
+        android:layout_marginTop="156dp"
         android:divider="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,10 +70,10 @@
     <TableLayout
         android:id="@+id/tableLayout"
         android:layout_width="243dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="60dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="64dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.66"
+        app:layout_constraintHorizontal_bias="0.755"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -109,27 +109,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/textView_CollectionPoint"
-                android:layout_width="fill_parent"
-                android:layout_height="20dp"
-                android:gravity="right"
-                android:paddingBottom="1dp"
-                android:text="Collection Point :"
-                android:textColor="@android:color/holo_blue_dark"
-                tools:layout_editor_absoluteX="55dp"
-                tools:layout_editor_absoluteY="154dp" />
-
-            <TextView
-                android:id="@+id/textView_Description_Value"
-                android:layout_width="fill_parent"
-                android:layout_height="20dp"
-                android:gravity="left"
-                android:paddingBottom="1dp"
-                android:paddingLeft="20dp"
-                android:text="Bioengineering"
-                tools:layout_editor_absoluteX="55dp"
-                tools:layout_editor_absoluteY="154dp" />
         </TableRow>
 
 

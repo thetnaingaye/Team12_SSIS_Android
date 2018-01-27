@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,11 +40,38 @@ public class CollectionListActivity extends Activity implements AdapterView.OnIt
             @Override
             protected void onPostExecute(List<Disbursement> rList) {
                 disbursementList = rList;
-                collectionDepList.setAdapter(new MyAdaptor_DeptCollection_Row(CollectionListActivity.this, R.layout.row_dept_forcollection, rList));
+                collectionDepList.setAdapter(new MyAdaptor_DeptCollection_Row(CollectionListActivity.this, R.layout.row_dept_forcollection, disbursementList));
             }
 
 
         }.execute(InventoryCatalogue.URI_SERVICE + "GetDisbursementLists");
+
+        Spinner s =(Spinner) findViewById(R.id.spinner);
+        int spinner_index = s.getSelectedItemPosition();
+
+        s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                List<Disbursement> list_collecitonpoints = new ArrayList<>();
+                for(Disbursement d:disbursementList)
+                {
+                    if(d.get("CollectionPointID").toString().equals(Integer.toString(position)))
+                    {
+
+                        list_collecitonpoints.add((d));
+                    }
+                }
+                collectionDepList.setAdapter(new MyAdaptor_DeptCollection_Row(CollectionListActivity.this, R.layout.row_dept_forcollection, list_collecitonpoints));
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
         collectionDepList.setOnItemClickListener(this);
 

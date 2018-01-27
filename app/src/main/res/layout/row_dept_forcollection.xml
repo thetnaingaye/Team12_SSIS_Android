@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/textView_Dept_Value"
-        android:layout_width="281dp"
+        android:layout_width="268dp"
         android:layout_height="35dp"
         android:layout_marginStart="44dp"
         android:gravity="center_vertical"
@@ -15,5 +15,16 @@
         android:textColor="@android:color/holo_blue_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_DisbursementID_Value"
+        android:layout_width="80dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="20dp"
+        android:gravity="center_vertical"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView_Dept_Value"
         app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

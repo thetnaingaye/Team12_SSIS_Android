@@ -38,7 +38,8 @@ public class MyAdaptor_DeptCollection_Row extends ArrayAdapter<Disbursement> {
         final View v = inflater.inflate(resource, null);
 
         final Disbursement item = items.get(position);
-
+        TextView textView_DisbursementId = v.findViewById(R.id.textView_DisbursementID_Value);
+        textView_DisbursementId.setText(item.get("DisbursementID"));
 
         if (item != null) {
             final TextView textView_dept = (TextView) v.findViewById(R.id.textView_Dept_Value);

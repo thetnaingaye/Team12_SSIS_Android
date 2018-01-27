@@ -2,18 +2,23 @@ package sg.edu.nus.iss.team12.ssis.team12_ssis;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import sg.edu.nus.iss.team12.ssis.team12_ssis.model.Department;
 import sg.edu.nus.iss.team12.ssis.team12_ssis.model.Disbursement;
 import sg.edu.nus.iss.team12.ssis.team12_ssis.model.DisbursementDetail;
+import sg.edu.nus.iss.team12.ssis.team12_ssis.model.InventoryCatalogue;
 import sg.edu.nus.iss.team12.ssis.team12_ssis.model.RetrivalItem;
 
 public class ViewDisbursementFormActivity extends Activity {
@@ -34,11 +39,41 @@ public class ViewDisbursementFormActivity extends Activity {
             ddlist  = (List<DisbursementDetail>) b.getSerializable("disbursement_detail");
         }
 
+        //settting TextView Values
+        TextView textView_Date = findViewById(R.id.textView_Date_Value);
+        textView_Date.setText(h_disbursement.get("CollectionDate"));
+        final TextView textView_dept = findViewById(R.id.textView_Dept_Value);
+        String uri = InventoryCatalogue.URI_SERVICE + "GetDeptName/" + h_disbursement.get("DepartmentID");
+        new AsyncTask<String, Void, Department>() {
+
+            @Override
+            protected Department doInBackground(String... params) {
+
+                return Department.jread(params[0]);
+            }
+
+            @Override
+            protected void onPostExecute(Department d) {
+                textView_dept.setText(d.get("DepartmentName"));
+
+            }
+
+        }.execute(uri);
+
+        TextView textView_CollectionPoint = findViewById(R.id.textview_CollectionPt_Value);
+        Resources res = getResources();
+        String[] cp = res.getStringArray(R.array.collectionPoints);
+        int index = Integer.parseInt(h_disbursement.get("CollectionPointID"));
+        textView_CollectionPoint.setText(cp[index]);
+
+        TextView textView_rep = findViewById(R.id.textView_Rep_Value);
+        textView_rep.setText(h_disbursement.get("RepresentativeName"));
+
+        //setting listview
         final ListView list = (ListView) findViewById(R.id.lv1);
         list.setAdapter(new MyAdaptor_Disbursement_Details(ViewDisbursementFormActivity.this,R.layout.row_disbursement_formdetail,ddlist));
 
         Button btnSign = findViewById(R.id.button_Sign);
-
         btnSign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
