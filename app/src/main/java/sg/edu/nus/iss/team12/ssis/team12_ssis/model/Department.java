@@ -18,7 +18,7 @@ public class Department extends HashMap<String,String> {
 public Department(String depdID,String deptname)
         {
            put("DeptID",depdID);
-            put("DepartmentName",deptname);
+           put("DepartmentName",deptname);
         }
 
 
