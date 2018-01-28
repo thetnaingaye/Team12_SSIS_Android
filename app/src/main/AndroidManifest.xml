@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="sg.edu.nus.iss.team12.ssis.team12_ssis">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -11,18 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
         <activity android:name=".InventoryListActivity" />
         <activity android:name=".InventoryDetailActivity" />
-        <activity android:name=".InventoryRetrievalListActivity"
-            android:windowSoftInputMode="adjustPan|stateHidden">
-
-        </activity>
+        <activity
+            android:name=".InventoryRetrievalListActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
         <activity android:name=".CollectionListActivity" />
         <activity android:name=".ViewDisbursementFormActivity" />
         <activity android:name=".AcknowledgeBySignatureActivity" />
@@ -32,7 +32,14 @@
         <activity android:name=".EmployeeRequisitionHistoryActivity" />
         <activity android:name=".StockCardActivity" />
         <activity android:name=".AdjustmentVoucherActivity" />
-        <activity android:name=".DisbursementListActivity"></activity>
+        <activity android:name=".DisbursementListActivity" />
+        <activity android:name=".AuthActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

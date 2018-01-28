@@ -7,6 +7,8 @@ import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.ImageButton;
 
+import java.util.HashMap;
+
 public class MainActivity extends Activity {
 
     @Override
@@ -14,8 +16,11 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         //If else. If is Clerk, Show clerk layout
         //If DeptHead, Show DeptHead layout
-        boolean isClerk = true;
-        boolean isHOD = false;
+
+        Bundle b = getIntent().getExtras();
+        final String role =  b.getString("Role");
+        boolean isClerk = (role.equals("Clerk"));
+        boolean isHOD = (role.equals("HOD"));
 
         if(isClerk)
         {

@@ -20,6 +20,7 @@ import sg.edu.nus.iss.team12.ssis.team12_ssis.model.InventoryCatalogue;
 public class CollectionListActivity extends Activity implements AdapterView.OnItemClickListener{
 
     List<Disbursement> disbursementList = new ArrayList<>();
+    ListView collectionDepList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +28,49 @@ public class CollectionListActivity extends Activity implements AdapterView.OnIt
         //If else condition and set the header label to either "COLLECTIONS" or "OUTSTANDING DISBURSEMENT"
         setContentView(R.layout.activity_collection_list);
 
-        final ListView collectionDepList = findViewById(R.id.listview_dept);
+        collectionDepList = findViewById(R.id.listview_dept);
 
+        bindListView();
+
+        Spinner s =(Spinner) findViewById(R.id.spinner);
+        int spinner_index = s.getSelectedItemPosition();
+
+        s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                List<Disbursement> list_collecitonpoints = new ArrayList<>();
+                for(Disbursement d:disbursementList)
+                {
+                    if(position == 0)
+                    {
+                        bindListView();
+                    }
+                    if (d.get("CollectionPointID").toString().equals(Integer.toString(position)))
+                    {
+                        list_collecitonpoints.add((d));
+                    }
+
+                }
+                collectionDepList.setAdapter(new MyAdaptor_DeptCollection_Row(CollectionListActivity.this, R.layout.row_dept_forcollection, list_collecitonpoints));
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+                bindListView();
+
+            }
+        });
+
+
+        collectionDepList.setOnItemClickListener(this);
+
+    }
+
+    private void bindListView()
+    {
         new AsyncTask<String, Void, List<Disbursement>>() {
 
             @Override
@@ -45,36 +87,6 @@ public class CollectionListActivity extends Activity implements AdapterView.OnIt
 
 
         }.execute(InventoryCatalogue.URI_SERVICE + "GetDisbursementLists");
-
-        Spinner s =(Spinner) findViewById(R.id.spinner);
-        int spinner_index = s.getSelectedItemPosition();
-
-        s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                List<Disbursement> list_collecitonpoints = new ArrayList<>();
-                for(Disbursement d:disbursementList)
-                {
-                    if(d.get("CollectionPointID").toString().equals(Integer.toString(position)))
-                    {
-
-                        list_collecitonpoints.add((d));
-                    }
-                }
-                collectionDepList.setAdapter(new MyAdaptor_DeptCollection_Row(CollectionListActivity.this, R.layout.row_dept_forcollection, list_collecitonpoints));
-
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-
-        collectionDepList.setOnItemClickListener(this);
-
     }
 
     @Override
