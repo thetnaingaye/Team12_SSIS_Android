@@ -45,6 +45,15 @@ public class MainActivity extends Activity {
         }else if(isHOD)
         {
             setContentView(R.layout.activity_main_depthead);
+            ImageButton imgBtn = (ImageButton) findViewById(R.id.imageButton_Requests);
+            imgBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View arg0) {
+                    Intent intent = new Intent(MainActivity.this,ViewRequisitionFormListActivity.class);
+                    startActivity(intent);
+                }
+            });
+
         }else
         {
             setContentView(R.layout.activity_main);
