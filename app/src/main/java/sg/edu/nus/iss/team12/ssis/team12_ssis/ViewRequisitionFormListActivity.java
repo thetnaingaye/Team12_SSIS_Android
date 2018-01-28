@@ -60,7 +60,7 @@ public class ViewRequisitionFormListActivity extends Activity implements Adapter
         RequisitionRecord item = (RequisitionRecord) av.getAdapter().getItem(position);
         Intent intent = new Intent(ViewRequisitionFormListActivity.this, ViewRequisitionFormDetailsActivity.class);
 
-        intent.putExtra("item", item);
+        intent.putExtra("requisition_record", item);
         startActivity(intent);
 
     }

@@ -15,7 +15,7 @@ import java.util.List;
 
 public class RequisitionRecord extends HashMap<String,String> {
 
-   // public List<DisbursementDetail> disbursementDetailsList = new ArrayList<>();
+    public List<RequisitionRecordDetail> requisitionRecordDetailsList = new ArrayList<>();
 
     public  RequisitionRecord()
     {
@@ -50,9 +50,9 @@ public class RequisitionRecord extends HashMap<String,String> {
                         b.getString("RequestorName")
                         );
 
-//                JSONArray jsonArray_Details = b.getJSONArray("WCF_DisbursementListDetail");
-//                d.disbursementDetailsList = DisbursementDetail.getDisbursementDetails(jsonArray_Details);
-
+                JSONArray jsonArray_Details = b.getJSONArray("WCF_RequisitionRecordDetails");
+                r.requisitionRecordDetailsList = RequisitionRecordDetail.getRequisitionRecordDetails(jsonArray_Details);
+                r.put("rdetails",Integer.toString(r.requisitionRecordDetailsList.size()));
 
                 list.add(r);
             }

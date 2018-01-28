@@ -35,7 +35,8 @@ public class RetrivalItem extends HashMap<String,String> {
         try {
             for (int i =0; i<a.length(); i++) {
                 JSONObject b = a.getJSONObject(i);
-                list.add(new RetrivalItem(b.getString("ItemID"),
+                list.add(new RetrivalItem(
+                        b.getString("ItemID"),
                         Integer.toString(b.getInt("ActualQty")),
                         b.getString("DepartmentID"),
                         Boolean.toString(b.getBoolean("IsOverride")),
