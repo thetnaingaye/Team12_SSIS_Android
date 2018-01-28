@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -126,5 +127,18 @@ public class ViewDisbursementFormActivity extends Activity {
 
             }
         });
+
+        //setting logo onClick back to home
+        ImageView img_logo = findViewById(R.id.imageView_Title);
+        img_logo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ViewDisbursementFormActivity.this,MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("Role","Clerk");
+                startActivity(intent);
+            }
+        });
+
     }
 }

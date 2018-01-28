@@ -2,6 +2,7 @@ package sg.edu.nus.iss.team12.ssis.team12_ssis;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 
+import sg.edu.nus.iss.team12.ssis.team12_ssis.model.InventoryCatalogue;
 import sg.edu.nus.iss.team12.ssis.team12_ssis.model.RequisitionRecordDetail;
 
 /**
@@ -34,10 +36,33 @@ public class MyAdaptor_RequestItem_Row extends ArrayAdapter<RequisitionRecordDet
                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         final View v = inflater.inflate(resource, null);
 
-        RequisitionRecordDetail item = items.get(position);
+        final RequisitionRecordDetail item = items.get(position);
 
-        TextView textView_ItemID = v.findViewById(R.id.textView_Item_Value);
+        final TextView textView_ItemID = v.findViewById(R.id.textView_Item_Value);
         textView_ItemID.setText(item.get("ItemID"));
+
+        new AsyncTask<String, Void, List<InventoryCatalogue>>() {
+
+            @Override
+            protected List<InventoryCatalogue> doInBackground(String... params) {
+
+                return InventoryCatalogue.jread(params[0]);
+            }
+
+            @Override
+            protected void onPostExecute(List<InventoryCatalogue> resultInventoryList) {
+                for(InventoryCatalogue inventoryCatalogue:resultInventoryList)
+                {
+                    if(inventoryCatalogue.get("ItemID").toString().equals(item.get("ItemID")))
+                    {
+                        textView_ItemID.setText(inventoryCatalogue.get("Description"));
+                    }
+                }
+
+            }
+
+
+        }.execute(InventoryCatalogue.URI_SERVICE + "GetInventoryList");
 
         TextView textView_reqQty = v.findViewById(R.id.textView_RequestedQty_Value);
         textView_reqQty.setText(item.get("RequestedQuantity"));

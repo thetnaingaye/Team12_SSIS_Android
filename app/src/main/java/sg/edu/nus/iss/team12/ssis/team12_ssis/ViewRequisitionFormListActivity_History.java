@@ -29,7 +29,7 @@ public class ViewRequisitionFormListActivity_History extends Activity implements
         super.onCreate(savedInstanceState);
 
         //If else condition for current and history ones. Different logic, i think....
-        setContentView(R.layout.activity_view_requisition_form_list);
+        setContentView(R.layout.activity_view_requisition_form_list_history);
         requestList = findViewById(R.id.listview_requestlist);
         deptid = "COMM";
 
@@ -63,7 +63,7 @@ public class ViewRequisitionFormListActivity_History extends Activity implements
                         }
                     }
                 }
-                requestList.setAdapter(new MyAdaptor_RequestList_Row(ViewRequisitionFormListActivity_History.this, R.layout.row_requestlist, pendingList));
+                requestList.setAdapter(new MyAdaptor_Reqeuestlist_history_row(ViewRequisitionFormListActivity_History.this, R.layout.row_requestlist_history, pendingList));
             }
 
 

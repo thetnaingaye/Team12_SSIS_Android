@@ -9,19 +9,19 @@
     <TableLayout
         android:id="@+id/tableLayout2"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="85dp"
         app:layout_constraintStart_toStartOf="parent">
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="85dp"
             android:background="@android:color/holo_red_dark">
 
 
             <ImageView
                 android:id="@+id/imageView_Title"
-                android:layout_width="41.39dp"
-                android:layout_height="40dp"
+                android:layout_width="51.74dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="0dp"
                 android:layout_marginStart="70dp"
@@ -37,7 +37,7 @@
             <TextView
                 android:id="@+id/textView9"
                 android:layout_width="150dp"
-                android:layout_height="50dp"
+                android:layout_height="85dp"
                 android:layout_marginLeft="5dp"
                 android:gravity="center_vertical"
                 android:text="REJECT"

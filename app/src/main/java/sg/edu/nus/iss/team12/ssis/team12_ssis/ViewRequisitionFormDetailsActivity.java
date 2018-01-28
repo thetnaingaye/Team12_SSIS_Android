@@ -174,5 +174,17 @@ public class ViewRequisitionFormDetailsActivity extends Activity {
             }
         });
 
+        //setting logo onClick back to home
+        ImageView img_logo = findViewById(R.id.imageView_Title);
+        img_logo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ViewRequisitionFormDetailsActivity.this,MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("Role","HOD");
+                startActivity(intent);
+            }
+        });
+
     }
 }
