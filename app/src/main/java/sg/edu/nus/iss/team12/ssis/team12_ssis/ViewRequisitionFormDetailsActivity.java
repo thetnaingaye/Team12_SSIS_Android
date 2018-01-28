@@ -5,9 +5,12 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -65,16 +68,11 @@ public class ViewRequisitionFormDetailsActivity extends Activity {
 
         TextView textView_Date = findViewById(R.id.textView_Date_Value);
         textView_Date.setText(record.get("RequestDate"));
-//        String str="";
-//        for(RequisitionRecordDetail rd:record.requisitionRecordDetailsList)
-//        {
-//            rd.put("Status","testing");
-//            str += rd.get("ItemID")+":"+rd.get("Status")+"\n";
-//        }
 
         ListView list = findViewById(R.id.lv1);
         list.setAdapter(new MyAdaptor_RequestItem_Row(ViewRequisitionFormDetailsActivity.this, R.layout.row_requestitem, record.requisitionRecordDetailsList));
 
+        //Approve Condition
         Button button_Approve = findViewById(R.id.button_Approve);
         button_Approve.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,20 +112,16 @@ public class ViewRequisitionFormDetailsActivity extends Activity {
             }
         });
 
+        //Reject Condition
         Button button_Reject = findViewById(R.id.button_Reject);
         button_Reject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
                 final Dialog d = new Dialog(ViewRequisitionFormDetailsActivity.this);
-               // d.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                d.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 d.setContentView(R.layout.reject_dialog);
 
-//                ImageView imgLevel = d.findViewById(R.id.imageView_Level);
-//                imgLevel.setImageResource(levelId);
-//                TextView txtShelf = d.findViewById(R.id.textView_Shelf_Value);
-//                TextView txtLevel = d.findViewById(R.id.textView_Level_Value);
-//                txtShelf.setText(item.get("Shelf"));
-//                txtLevel.setText((item.get("Level")));
+
                 Button button_Cancel = d.findViewById(R.id.button_cancel);
                 button_Cancel.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -140,10 +134,23 @@ public class ViewRequisitionFormDetailsActivity extends Activity {
                 button_Confirm.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String str="";
+
+                        final EditText editText_remark = d.findViewById(R.id.editText_remark_value);
+                        if(editText_remark.getText().toString().trim().length() == 0)
+                        {
+
+                            record.put("Remarks","no remarks");
+                        }
+                        else
+                        {
+                            record.put("Remarks",editText_remark.getText().toString());
+                        }
+
+                        String str= record.get("Remarks")+"\n";
                         for (RequisitionRecordDetail rd : record.requisitionRecordDetailsList) {
                             rd.put("Status", "Rejected");
-                            str += rd.get("ItemID") + ":" + rd.get("Status") + "\n";
+
+                            str += rd.get("ItemID") + ":" + rd.get("Status") +":"+ "\n";
                         }
                         Toast.makeText(ViewRequisitionFormDetailsActivity.this, str, Toast.LENGTH_SHORT).show();
 
