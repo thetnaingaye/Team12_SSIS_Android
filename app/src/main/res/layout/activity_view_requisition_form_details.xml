@@ -124,6 +124,33 @@
                 tools:layout_editor_absoluteY="154dp" />
         </TableRow>
 
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView_Status"
+                android:layout_width="fill_parent"
+                android:layout_height="25dp"
+                android:gravity="left"
+                android:paddingBottom="1dp"
+                android:text="Status:"
+                android:textColor="@android:color/holo_blue_dark"
+                tools:layout_editor_absoluteX="55dp"
+                tools:layout_editor_absoluteY="154dp" />
+
+            <TextView
+                android:id="@+id/textView_Status_Value"
+                android:layout_width="146dp"
+                android:layout_height="25dp"
+                android:gravity="left"
+                android:paddingBottom="1dp"
+                android:paddingLeft="20dp"
+                android:text="12 Jan 2018"
+                tools:layout_editor_absoluteX="55dp"
+                tools:layout_editor_absoluteY="154dp" />
+        </TableRow>
+
 
     </TableLayout>
 

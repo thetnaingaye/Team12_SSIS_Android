@@ -54,6 +54,15 @@ public class MainActivity extends Activity {
                 }
             });
 
+            ImageButton imgBtn_history = (ImageButton) findViewById(R.id.imageButton_History);
+            imgBtn_history.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View arg0) {
+                    Intent intent = new Intent(MainActivity.this,ViewRequisitionFormListActivity_History.class);
+                    startActivity(intent);
+                }
+            });
+
         }else
         {
             setContentView(R.layout.activity_main);

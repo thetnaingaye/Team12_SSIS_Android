@@ -36,6 +36,14 @@ public class ViewRequisitionFormDetailsActivity extends Activity {
         Bundle b = getIntent().getExtras();
         if (b != null) {
              h_record = (HashMap<String, String>) b.get("requisition_record");
+             if(b.get("history").equals("yes"))
+             {
+                 Button button_Approve = findViewById(R.id.button_Approve);
+                 button_Approve.setVisibility(View.GONE);
+
+                 Button button_Reject = findViewById(R.id.button_Reject);
+                 button_Reject.setVisibility(View.GONE);
+             }
         }
         String deptid = h_record.get("DepartmentID");
 
@@ -68,6 +76,9 @@ public class ViewRequisitionFormDetailsActivity extends Activity {
 
         TextView textView_Date = findViewById(R.id.textView_Date_Value);
         textView_Date.setText(record.get("RequestDate"));
+
+        TextView textView_Status = findViewById(R.id.textView_Status_Value);
+        textView_Status.setText(record.requisitionRecordDetailsList.get(0).get("Status"));
 
         ListView list = findViewById(R.id.lv1);
         list.setAdapter(new MyAdaptor_RequestItem_Row(ViewRequisitionFormDetailsActivity.this, R.layout.row_requestitem, record.requisitionRecordDetailsList));

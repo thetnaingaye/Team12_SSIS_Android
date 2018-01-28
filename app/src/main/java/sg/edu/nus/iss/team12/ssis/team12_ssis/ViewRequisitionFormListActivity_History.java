@@ -11,12 +11,15 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-import sg.edu.nus.iss.team12.ssis.team12_ssis.model.Disbursement;
 import sg.edu.nus.iss.team12.ssis.team12_ssis.model.InventoryCatalogue;
 import sg.edu.nus.iss.team12.ssis.team12_ssis.model.RequisitionRecord;
 import sg.edu.nus.iss.team12.ssis.team12_ssis.model.RequisitionRecordDetail;
 
-public class ViewRequisitionFormListActivity extends Activity implements AdapterView.OnItemClickListener {
+/**
+ * Created by mmu1t on 28/1/2018.
+ */
+
+public class ViewRequisitionFormListActivity_History extends Activity implements AdapterView.OnItemClickListener {
 
     ListView requestList;
     String deptid;
@@ -54,13 +57,13 @@ public class ViewRequisitionFormListActivity extends Activity implements Adapter
                     RequisitionRecordDetail rd = r.requisitionRecordDetailsList.get(0);
                     if(rd != null)
                     {
-                        if(rd.get("Status").equals("Pending"))
+                        if(!rd.get("Status").equals("Pending"))
                         {
                             pendingList.add(r);
                         }
                     }
                 }
-                requestList.setAdapter(new MyAdaptor_RequestList_Row(ViewRequisitionFormListActivity.this, R.layout.row_requestlist, pendingList));
+                requestList.setAdapter(new MyAdaptor_RequestList_Row(ViewRequisitionFormListActivity_History.this, R.layout.row_requestlist, pendingList));
             }
 
 
@@ -71,10 +74,10 @@ public class ViewRequisitionFormListActivity extends Activity implements Adapter
     public void onItemClick(AdapterView<?> av, View v, int position, long id) {
 
         RequisitionRecord item = (RequisitionRecord) av.getAdapter().getItem(position);
-        Intent intent = new Intent(ViewRequisitionFormListActivity.this, ViewRequisitionFormDetailsActivity.class);
+        Intent intent = new Intent(ViewRequisitionFormListActivity_History.this, ViewRequisitionFormDetailsActivity.class);
 
         intent.putExtra("requisition_record", item);
-        intent.putExtra("history","no");
+        intent.putExtra("history","yes");
         startActivity(intent);
 
     }
