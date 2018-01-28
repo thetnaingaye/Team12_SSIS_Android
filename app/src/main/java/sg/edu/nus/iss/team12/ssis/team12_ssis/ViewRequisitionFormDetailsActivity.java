@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -79,13 +80,9 @@ public class ViewRequisitionFormDetailsActivity extends Activity {
             @Override
             public void onClick(View arg0) {
                 final Dialog d = new Dialog(ViewRequisitionFormDetailsActivity.this);
+                d.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 d.setContentView(R.layout.approve_dialog);
-//                ImageView imgLevel = d.findViewById(R.id.imageView_Level);
-//                imgLevel.setImageResource(levelId);
-//                TextView txtShelf = d.findViewById(R.id.textView_Shelf_Value);
-//                TextView txtLevel = d.findViewById(R.id.textView_Level_Value);
-//                txtShelf.setText(item.get("Shelf"));
-//                txtLevel.setText((item.get("Level")));
+
                 Button button_Cancel = d.findViewById(R.id.button_cancel);
                 button_Cancel.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -106,6 +103,9 @@ public class ViewRequisitionFormDetailsActivity extends Activity {
                         Toast.makeText(ViewRequisitionFormDetailsActivity.this, str, Toast.LENGTH_SHORT).show();
 
                         d.dismiss();
+                        Intent intent = new Intent(ViewRequisitionFormDetailsActivity.this,ViewRequisitionFormListActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
                     }
                 });
                 d.setCancelable(false);
@@ -119,7 +119,9 @@ public class ViewRequisitionFormDetailsActivity extends Activity {
             @Override
             public void onClick(View arg0) {
                 final Dialog d = new Dialog(ViewRequisitionFormDetailsActivity.this);
+               // d.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 d.setContentView(R.layout.reject_dialog);
+
 //                ImageView imgLevel = d.findViewById(R.id.imageView_Level);
 //                imgLevel.setImageResource(levelId);
 //                TextView txtShelf = d.findViewById(R.id.textView_Shelf_Value);

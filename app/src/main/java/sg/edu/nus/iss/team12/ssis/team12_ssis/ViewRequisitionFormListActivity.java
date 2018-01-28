@@ -8,11 +8,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import sg.edu.nus.iss.team12.ssis.team12_ssis.model.Disbursement;
 import sg.edu.nus.iss.team12.ssis.team12_ssis.model.InventoryCatalogue;
 import sg.edu.nus.iss.team12.ssis.team12_ssis.model.RequisitionRecord;
+import sg.edu.nus.iss.team12.ssis.team12_ssis.model.RequisitionRecordDetail;
 
 public class ViewRequisitionFormListActivity extends Activity implements AdapterView.OnItemClickListener {
 
@@ -46,8 +48,19 @@ public class ViewRequisitionFormListActivity extends Activity implements Adapter
 
             @Override
             protected void onPostExecute(List<RequisitionRecord> rList) {
-                //disbursementList = rList;
-                requestList.setAdapter(new MyAdaptor_RequestList_Row(ViewRequisitionFormListActivity.this, R.layout.row_requestlist, rList));
+                List<RequisitionRecord> pendingList = new ArrayList<>();
+                for(RequisitionRecord r:rList)
+                {
+                    RequisitionRecordDetail rd = r.requisitionRecordDetailsList.get(0);
+                    if(rd != null)
+                    {
+                        if(rd.get("Status").equals("Pending"))
+                        {
+                            pendingList.add(r);
+                        }
+                    }
+                }
+                requestList.setAdapter(new MyAdaptor_RequestList_Row(ViewRequisitionFormListActivity.this, R.layout.row_requestlist, pendingList));
             }
 
 
