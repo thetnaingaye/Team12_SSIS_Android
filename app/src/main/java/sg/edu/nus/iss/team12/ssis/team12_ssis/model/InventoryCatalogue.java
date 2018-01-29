@@ -17,7 +17,7 @@ import java.util.List;
 
 public class InventoryCatalogue extends HashMap<String,String> {
 
-    public static final String URI_SERVICE = "http://192.168.1.15/Team12_SSIS/WebServices/Service.svc/";
+    public static final String URI_SERVICE = "http://172.17.248.45/Team12_SSIS/WebServices/Service.svc/";
 
     public InventoryCatalogue(String itemID,String bin,String bufferstocklevel, String catId, String desc,
                               String discon,String level,String reorderlevel,

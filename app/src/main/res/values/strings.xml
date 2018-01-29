@@ -18,4 +18,9 @@
         <item>Minus</item>
 
     </string-array>
+
+
+    <string name="login_hint_username">Username</string>
+    <string name="login_hint_password">Password</string>
+    <string name="btn_login">Login</string>
 </resources>
