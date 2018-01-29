@@ -2,7 +2,9 @@ package sg.edu.nus.iss.team12.ssis.team12_ssis;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -27,6 +29,8 @@ import sg.edu.nus.iss.team12.ssis.team12_ssis.model.InventoryCatalogue;
  */
 
 public class MyAdaptor_Disbursement_Details extends ArrayAdapter<DisbursementDetail> {
+    SharedPreferences pref;
+    String token;
 
     private List<DisbursementDetail> items;
     int resource;
@@ -41,6 +45,9 @@ public class MyAdaptor_Disbursement_Details extends ArrayAdapter<DisbursementDet
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) getContext()
                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+
+        pref = PreferenceManager.getDefaultSharedPreferences(getContext());
+        token = pref.getString("tokenKey", "hereJustPutRandomDefaultValue");
         final View v = inflater.inflate(resource, null);
         final HashMap<String,String> item = items.get(position);
 
@@ -53,7 +60,7 @@ public class MyAdaptor_Disbursement_Details extends ArrayAdapter<DisbursementDet
             @Override
             protected List<InventoryCatalogue> doInBackground(String... params) {
 
-                return InventoryCatalogue.jread(params[0]);
+                return InventoryCatalogue.jread(params[0],token);
             }
 
             @Override

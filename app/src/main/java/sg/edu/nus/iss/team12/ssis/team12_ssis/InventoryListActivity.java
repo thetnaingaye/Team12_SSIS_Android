@@ -2,8 +2,10 @@ package sg.edu.nus.iss.team12.ssis.team12_ssis;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -18,10 +20,14 @@ import java.util.List;
 import sg.edu.nus.iss.team12.ssis.team12_ssis.model.InventoryCatalogue;
 
 public class InventoryListActivity extends Activity implements AdapterView.OnItemClickListener {
+    SharedPreferences pref;
+    String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        token = pref.getString("tokenKey", "hereJustPutRandomDefaultValue");
         setContentView(R.layout.activity_inventory_list);
         final ListView list = findViewById(R.id.lv1);
 
@@ -31,7 +37,7 @@ public class InventoryListActivity extends Activity implements AdapterView.OnIte
             @Override
             protected List<InventoryCatalogue> doInBackground(String... params) {
 
-                return InventoryCatalogue.jread(params[0]);
+                return InventoryCatalogue.jread(params[0],token);
             }
 
             @Override
@@ -57,7 +63,7 @@ public class InventoryListActivity extends Activity implements AdapterView.OnIte
                                                        @Override
                                                        protected List<InventoryCatalogue> doInBackground(String... params) {
 
-                                                           return InventoryCatalogue.jread(params[0]);
+                                                           return InventoryCatalogue.jread(params[0],token);
                                                        }
 
                                                        @Override
@@ -77,7 +83,7 @@ public class InventoryListActivity extends Activity implements AdapterView.OnIte
                                                        @Override
                                                        protected List<InventoryCatalogue> doInBackground(String... params) {
 
-                                                           return InventoryCatalogue.jread(params[0]);
+                                                           return InventoryCatalogue.jread(params[0],token);
                                                        }
 
                                                        @Override

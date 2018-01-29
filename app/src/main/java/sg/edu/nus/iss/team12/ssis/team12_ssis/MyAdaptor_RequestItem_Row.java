@@ -2,7 +2,9 @@ package sg.edu.nus.iss.team12.ssis.team12_ssis;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +22,8 @@ import sg.edu.nus.iss.team12.ssis.team12_ssis.model.RequisitionRecordDetail;
  */
 
 public class MyAdaptor_RequestItem_Row extends ArrayAdapter<RequisitionRecordDetail> {
+    SharedPreferences pref;
+    String token;
 
     private List<RequisitionRecordDetail> items;
     int resource;
@@ -28,6 +32,9 @@ public class MyAdaptor_RequestItem_Row extends ArrayAdapter<RequisitionRecordDet
         super(context, resource, items);
         this.resource = resource;
         this.items = items;
+        pref = PreferenceManager.getDefaultSharedPreferences(getContext());
+        token = pref.getString("tokenKey", "hereJustPutRandomDefaultValue");
+
     }
 
     @Override
@@ -46,7 +53,7 @@ public class MyAdaptor_RequestItem_Row extends ArrayAdapter<RequisitionRecordDet
             @Override
             protected List<InventoryCatalogue> doInBackground(String... params) {
 
-                return InventoryCatalogue.jread(params[0]);
+                return InventoryCatalogue.jread(params[0],token);
             }
 
             @Override
