@@ -73,6 +73,16 @@ public class JSONParser {
         return jArray;
     }
 
+    public static JSONArray getJSONArrayFromUrl_Post(String url, String token) {
+        JSONArray jArray = null;
+        try {
+            jArray = new JSONArray(postStream(url, token));
+        } catch (JSONException e) {
+            Log.e("JSON Parser", "Error parsing array " + e.toString());
+        }
+        return jArray;
+    }
+
     public static String postStream(String url, String data){
         InputStream is = null;
         try{

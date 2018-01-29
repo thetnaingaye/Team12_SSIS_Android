@@ -45,7 +45,7 @@
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="100dp"
-        android:text="Requested Qty"
+        android:text="Actual Qty"
         app:layout_constraintBottom_toTopOf="@+id/lv1"
         app:layout_constraintStart_toEndOf="@+id/textView" />
 
@@ -67,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="40dp"
-        android:text="Actual Qty"
+        android:text="Collected Qty"
         app:layout_constraintBottom_toTopOf="@+id/lv1"
         app:layout_constraintEnd_toEndOf="parent" />
 

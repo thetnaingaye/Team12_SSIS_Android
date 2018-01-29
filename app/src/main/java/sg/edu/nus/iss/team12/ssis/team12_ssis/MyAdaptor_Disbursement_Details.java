@@ -44,9 +44,9 @@ public class MyAdaptor_Disbursement_Details extends ArrayAdapter<DisbursementDet
         final View v = inflater.inflate(resource, null);
         final HashMap<String,String> item = items.get(position);
 
-        final EditText editText_Allocation = (EditText) v.findViewById(R.id.editText_Allocation_Value);
+        final EditText editText_Allocation = (EditText) v.findViewById(R.id.editText_Allocation_Value); // collected qty
         final TextView textView_item = (TextView) v.findViewById(R.id.textView_ItemCode_Value);
-        final TextView textView_reqQty = (TextView)v.findViewById(R.id.textView_RequestedQty_Value);
+        final TextView textView_reqQty = (TextView)v.findViewById(R.id.textView_RequestedQty_Value); //actual qty
 
         new AsyncTask<String, Void, List<InventoryCatalogue>>() {
 
@@ -73,35 +73,9 @@ public class MyAdaptor_Disbursement_Details extends ArrayAdapter<DisbursementDet
 
 
 
-        textView_reqQty.setText((item.get("QuantityRequested")));
+        textView_reqQty.setText((item.get("ActualQuantity")));
 
-        editText_Allocation.setText((item.get("QuantityCollected")));
-//        if (item != null) {
-//            final TextView textView_item = (TextView) v.findViewById(R.id.textView_ItemCode_Value);
-//
-//
-//            String uri = InventoryCatalogue.URI_SERVICE + "GetDeptName/"+item.get("DepartmentID");
-//            new AsyncTask<String, Void, Department>() {
-//
-//                @Override
-//                protected Department doInBackground(String... params) {
-//
-//                    return Department.jread(params[0]);
-//                }
-//
-//                @Override
-//                protected void onPostExecute(Department d) {
-//                    textView_dept.setText(d.get("DepartmentName"));
-//
-//
-//                }
-//
-//
-//            }.execute(uri);
-
-
-
-
+        editText_Allocation.setText((item.get("ActualQuantity")));
 
         editText_Allocation.addTextChangedListener(new TextWatcher() {
 
@@ -117,7 +91,7 @@ public class MyAdaptor_Disbursement_Details extends ArrayAdapter<DisbursementDet
             public void onTextChanged(CharSequence s, int start,
                                       int before, int count) {
                 //get value from edittext and set to book object's attribute
-                item.put("ActualQuantity",editText_Allocation.getText().toString());
+                item.put("QuantityCollected",editText_Allocation.getText().toString());
             }
         });
 

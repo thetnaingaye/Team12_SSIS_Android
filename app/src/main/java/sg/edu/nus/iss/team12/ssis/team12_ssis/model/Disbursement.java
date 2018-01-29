@@ -32,9 +32,9 @@ public class Disbursement extends HashMap<String,String> implements java.io.Seri
 
     }
 
-    public static List<Disbursement> jread(String url) {
+    public static List<Disbursement> jread(String url,String token) {
         List<Disbursement> list = new ArrayList<Disbursement>();
-        JSONArray a = JSONParser.getJSONArrayFromUrl(url);
+        JSONArray a = JSONParser.getJSONArrayFromUrl_Post(url,token);
         try {
             for (int i = 0; i < a.length(); i++)
             {

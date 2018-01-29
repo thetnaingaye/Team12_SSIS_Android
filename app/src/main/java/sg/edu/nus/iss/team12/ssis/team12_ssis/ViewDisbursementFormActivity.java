@@ -108,7 +108,7 @@ public class ViewDisbursementFormActivity extends Activity {
                         h_disbursement.get("CollectionPointID"),
                         h_disbursement.get("DepartmentID"),
                         h_disbursement.get("RepresentativeName"),
-                        h_disbursement.get("Status"));
+                        "Collected");
                 disbursement.disbursementDetailsList = dfinal;
 
                 //testing data
@@ -116,7 +116,7 @@ public class ViewDisbursementFormActivity extends Activity {
 
                 for(DisbursementDetail r : dfinal)
                 {
-                    str += "ID"+r.get("ID")+"\t"+"Requested: "+r.get("QuantityRequested")+"\t"+" Actual: "+r.get("ActualQuantity")+"\n";
+                    str += "ID"+r.get("ID")+"\t"+"Actual: "+r.get("ActualQuantity")+"\t"+" Collected: "+r.get("QuantityCollected")+"\n";
                 }
                 Toast.makeText(ViewDisbursementFormActivity.this, str, Toast.LENGTH_SHORT).show();
 

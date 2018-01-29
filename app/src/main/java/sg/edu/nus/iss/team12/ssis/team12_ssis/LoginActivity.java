@@ -22,8 +22,15 @@ public class LoginActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
         pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        if(pref.getString("role","default_role").equals("Clerk") || pref.getString("role","default_role").equals("HOD"))
+        {
+            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+            startActivity(intent);
+        }
+
+        setContentView(R.layout.activity_login);
+
         final EditText etUsername = (EditText) findViewById(R.id.etUsername);
         final EditText etPassword = (EditText) findViewById(R.id.etPassword);
 
