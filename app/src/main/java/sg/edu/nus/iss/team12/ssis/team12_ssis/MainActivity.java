@@ -2,7 +2,9 @@ package sg.edu.nus.iss.team12.ssis.team12_ssis;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.ImageButton;
@@ -10,6 +12,7 @@ import android.widget.ImageButton;
 import java.util.HashMap;
 
 public class MainActivity extends Activity {
+    SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,8 +20,13 @@ public class MainActivity extends Activity {
         //If else. If is Clerk, Show clerk layout
         //If DeptHead, Show DeptHead layout
 
+        pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
         Bundle b = getIntent().getExtras();
-        final String role =  b.getString("Role");
+//        final String role =  b.getString("Role");
+
+        final String role =  pref.getString("role", "hereJustPutRandomDefaultValue");
+
         boolean isClerk = (role.equals("Clerk"));
         boolean isHOD = (role.equals("HOD"));
 

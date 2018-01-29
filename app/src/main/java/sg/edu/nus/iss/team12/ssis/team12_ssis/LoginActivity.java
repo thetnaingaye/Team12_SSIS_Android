@@ -1,6 +1,7 @@
 package sg.edu.nus.iss.team12.ssis.team12_ssis;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -82,32 +83,31 @@ public class LoginActivity extends Activity {
     }
 
     private void proceed(String token) {
-        String check = token.substring(1,8);
+        String check = token.substring(1, 8);
         if (check.equals("Invalid")) {
             Toast t = Toast.makeText(getApplicationContext(), token, Toast.LENGTH_SHORT);
             t.show();
-        }
-        else
-        {
-        String seperator = "/";
-        String[] tokenArray = token.split(seperator);
-        String tokenKey = tokenArray[0].replace("\\", "").replace("\"", "");
-        String department = tokenArray[1].replace("\\", "");
-        String role = tokenArray[2].replace("\\", "").replace("\"", "");
-        SharedPreferences.Editor editor = pref.edit();
-        editor.putString("tokenKey", tokenKey);
-        editor.putString("department", department);
-        editor.putString("role", role);
-        editor.commit();
+        } else {
+            String seperator = "/";
+            String[] tokenArray = token.split(seperator);
+            String tokenKey = tokenArray[0].replace("\\", "").replace("\"", "");
+            String department = tokenArray[1].replace("\\", "");
+            String role = tokenArray[2].replace("\\", "").replace("\"", "").replace("\n", "");
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putString("tokenKey", tokenKey);
+            editor.putString("department", department);
+            editor.putString("role", role);
+            editor.commit();
 
-        tokenKey = pref.getString("tokenKey", "defautValue");
-        department = pref.getString("department", "public");
-        role = pref.getString("role", "public");
+            tokenKey = pref.getString("tokenKey", "defautValue");
+            department = pref.getString("department", "public");
+            role = pref.getString("role", "public");
 
-        String str = tokenKey+"\n" + department+"\n" + role;
-
-        Toast t = Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT);
-        t.show();
+            String str = tokenKey + "\n" + department + "\n" + role;
+            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+            startActivity(intent);
+//                    Toast t = Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT);
+//            t.show();
         }
 
 
