@@ -2,9 +2,13 @@ package sg.edu.nus.iss.team12.ssis.team12_ssis;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -23,10 +27,14 @@ import sg.edu.nus.iss.team12.ssis.team12_ssis.model.InventoryCatalogue;
 import sg.edu.nus.iss.team12.ssis.team12_ssis.model.RetrivalItem;
 
 public class ViewDisbursementFormActivity extends Activity {
+    SharedPreferences pref;
+    String token;
     HashMap<String,String> h_disbursement;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        token = pref.getString("tokenKey","token");
         //Decide whether is it gonna be Sigature-based or PIN-based
         //Ouuuu Yeah~~!!!
         setContentView(R.layout.activity_view_disbursement_form);
@@ -118,7 +126,28 @@ public class ViewDisbursementFormActivity extends Activity {
                 {
                     str += "ID"+r.get("ID")+"\t"+"Actual: "+r.get("ActualQuantity")+"\t"+" Collected: "+r.get("QuantityCollected")+"\n";
                 }
-                Toast.makeText(ViewDisbursementFormActivity.this, str, Toast.LENGTH_SHORT).show();
+                final  String url = InventoryCatalogue.URI_SERVICE+"UpdateDisburse";
+
+                new AsyncTask<Disbursement, Void, Void>() {
+
+                    @Override
+                    protected Void doInBackground(Disbursement... params) {
+
+                        Disbursement.updateDisbursement(params[0],token,url);
+                        return null;
+
+                    }
+
+                    @Override
+                    protected void onPostExecute(Void d) {
+                        Toast.makeText(ViewDisbursementFormActivity.this, "hi", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                }.execute(disbursement);
+//                Disbursement.updateDisbursement(disbursement,token,url);
+//                Toast.makeText(ViewDisbursementFormActivity.this, str, Toast.LENGTH_SHORT).show();
+
 
 
 //                Intent intent = new Intent(ViewDisbursementFormActivity.this,MainActivity.class);
@@ -140,5 +169,36 @@ public class ViewDisbursementFormActivity extends Activity {
             }
         });
 
+    }
+
+
+    //menu option
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.option1:
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                finish();
+                startActivity(intent);
+                return true;
+
+            case R.id.option2:
+                pref.edit().clear().commit();
+                Intent intent_logout = new Intent(getApplicationContext(),LoginActivity.class);
+                finish();
+                startActivity(intent_logout);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

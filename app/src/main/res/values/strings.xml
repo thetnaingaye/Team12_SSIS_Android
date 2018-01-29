@@ -23,4 +23,9 @@
     <string name="login_hint_username">Username</string>
     <string name="login_hint_password">Password</string>
     <string name="btn_login">Login</string>
+
+
+    <string name="option1">Home</string>
+    <string name="option2">Log Out</string>
+
 </resources>

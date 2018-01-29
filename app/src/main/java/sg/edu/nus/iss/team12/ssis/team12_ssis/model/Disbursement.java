@@ -58,6 +58,37 @@ public class Disbursement extends HashMap<String,String> implements java.io.Seri
         }
         return (list);
     }
+    public static void updateDisbursement(Disbursement disbursement, String token, String url)
+    {
+        try {
+
+
+            JSONObject disbursementList = new JSONObject();
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("DisbursementID", disbursement.get("DisbursementID"));
+            jsonObject.put("Status", disbursement.get("Status"));
+            JSONArray d_details = new JSONArray();
+            for(DisbursementDetail d:disbursement.disbursementDetailsList)
+            {
+                JSONObject j = new JSONObject();
+                j.put("ID",d.get("ID"));
+                j.put("QuantityCollected",d.get("QuantityCollected"));
+                j.put("Remarks",d.get("Remarks"));
+                d_details.put(j);
+            }
+            jsonObject.put("WCF_DisbursementListDetail", d_details);
+
+            disbursementList.put("disbursementList", jsonObject );
+
+            disbursementList.put("token", token);
+            String str = disbursementList.toString();
+
+            JSONParser.postStream(url, disbursementList.toString());
+        }
+        catch(Exception e){
+
+        }
+    }
 
 }
 

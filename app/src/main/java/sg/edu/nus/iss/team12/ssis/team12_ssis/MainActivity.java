@@ -1,13 +1,18 @@
 package sg.edu.nus.iss.team12.ssis.team12_ssis;
 
 import android.app.Activity;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
+import android.support.v4.view.MenuItemCompat;
 import android.view.View;
 import android.widget.ImageButton;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import java.util.HashMap;
 
@@ -25,19 +30,18 @@ public class MainActivity extends Activity {
         Bundle b = getIntent().getExtras();
 //        final String role =  b.getString("Role");
 
-        final String role =  pref.getString("role", "hereJustPutRandomDefaultValue");
+        final String role = pref.getString("role", "hereJustPutRandomDefaultValue");
 
         boolean isClerk = (role.equals("Clerk"));
         boolean isHOD = (role.equals("HOD"));
 
-        if(isClerk)
-        {
+        if (isClerk) {
             setContentView(R.layout.activity_main_clerk);
             ImageButton imgBtn = (ImageButton) findViewById(R.id.imageButton_Main);
             imgBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View arg0) {
-                    Intent intent = new Intent(MainActivity.this,InventoryListActivity.class);
+                    Intent intent = new Intent(MainActivity.this, InventoryListActivity.class);
                     startActivity(intent);
                 }
             });
@@ -46,18 +50,17 @@ public class MainActivity extends Activity {
             imgBtn_Collection.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View arg0) {
-                    Intent intent = new Intent(MainActivity.this,CollectionListActivity.class);
+                    Intent intent = new Intent(MainActivity.this, CollectionListActivity.class);
                     startActivity(intent);
                 }
             });
-        }else if(isHOD)
-        {
+        } else if (isHOD) {
             setContentView(R.layout.activity_main_depthead);
             ImageButton imgBtn = (ImageButton) findViewById(R.id.imageButton_Requests);
             imgBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View arg0) {
-                    Intent intent = new Intent(MainActivity.this,ViewRequisitionFormListActivity.class);
+                    Intent intent = new Intent(MainActivity.this, ViewRequisitionFormListActivity.class);
                     startActivity(intent);
                 }
             });
@@ -66,15 +69,46 @@ public class MainActivity extends Activity {
             imgBtn_history.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View arg0) {
-                    Intent intent = new Intent(MainActivity.this,ViewRequisitionFormListActivity_History.class);
+                    Intent intent = new Intent(MainActivity.this, ViewRequisitionFormListActivity_History.class);
                     startActivity(intent);
                 }
             });
 
-        }else
-        {
+        } else {
             setContentView(R.layout.activity_main);
         }
 
+
     }
+
+    //menu option
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+//            case R.id.option1:
+//                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                startActivity(intent);
+//                return true;
+
+            case R.id.option2:
+                pref.edit().clear().commit();
+                Intent intent_logout = new Intent(getApplicationContext(),LoginActivity.class);
+                finish();
+                startActivity(intent_logout);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
 }

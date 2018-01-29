@@ -26,6 +26,8 @@ public class LoginActivity extends Activity {
         if(pref.getString("role","default_role").equals("Clerk") || pref.getString("role","default_role").equals("HOD"))
         {
             Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+            //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            finish();
             startActivity(intent);
         }
 
@@ -53,23 +55,7 @@ public class LoginActivity extends Activity {
                     protected void onPostExecute(String token) {
                         tokenKey = token;
                         proceed(tokenKey);
-//                        if(token.equals("Invalid")) {
-//                            Toast t = Toast.makeText(getApplicationContext(), "Invalid Username/Password", Toast.LENGTH_SHORT);
-//                            t.show();
-//                           // this.cancel(true);
-//                        }
-//                        else{
-//                            String seperator = "/";
-//                            String[] tokenArray = token.split(seperator);
-//                            String tokenKey = tokenArray[0];
-//                            String department = tokenArray[0];
-//                            String role = tokenArray[1];
-//                            SharedPreferences.Editor editor = pref.edit();
-//                            editor.putString("tokenKey", tokenKey);
-//                            editor.putString("department", department);
-//                            editor.putString("role", role);
-//                            editor.commit();
-//                        }
+
                     }
                 }.execute(username, password);
 
@@ -112,7 +98,10 @@ public class LoginActivity extends Activity {
 
             String str = tokenKey + "\n" + department + "\n" + role;
             Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+            //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            finish();
             startActivity(intent);
+
 //                    Toast t = Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT);
 //            t.show();
         }
