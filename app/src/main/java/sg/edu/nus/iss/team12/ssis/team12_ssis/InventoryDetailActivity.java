@@ -3,9 +3,11 @@ package sg.edu.nus.iss.team12.ssis.team12_ssis;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -21,21 +23,27 @@ import sg.edu.nus.iss.team12.ssis.team12_ssis.model.RetrivalItem;
 
 public class InventoryDetailActivity extends Activity {
     List<RetrivalItem> retrivalList;
+    SharedPreferences pref;
+    String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory_detail);
+        pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        token = pref.getString("tokenKey", "hereJustPutRandomDefaultValue");
+
         Bundle b = getIntent().getExtras();
         final HashMap<String,String> item = (HashMap<String, String>) b.get("item");
+        final String itemID = item.get("ItemID").toString();
         retrivalList = new ArrayList<>();
-        String uri = InventoryCatalogue.URI_SERVICE + "GetRelevantListByDept/"+item.get("ItemID");
+        String uri = InventoryCatalogue.URI_SERVICE + "GetRelevantListByDept";
         new AsyncTask<String, Void, List<RetrivalItem>>() {
 
             @Override
             protected List<RetrivalItem> doInBackground(String... params) {
 
-                return RetrivalItem.jread(params[0]);
+                return RetrivalItem.jread_getItemByDept(params[0],itemID,token);
             }
 
             @Override
