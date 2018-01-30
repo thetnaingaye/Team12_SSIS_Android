@@ -156,7 +156,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="16dp"
         android:text="Date"
         app:layout_constraintBottom_toTopOf="@+id/listView_StockCard"
         app:layout_constraintStart_toStartOf="parent" />
@@ -166,7 +166,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="60dp"
         android:text="Desc"
         app:layout_constraintBottom_toTopOf="@+id/listView_StockCard"
         app:layout_constraintStart_toEndOf="@+id/textView_Date" />
@@ -176,7 +176,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="100dp"
+        android:layout_marginStart="116dp"
         android:text="Type"
         app:layout_constraintBottom_toTopOf="@+id/listView_StockCard"
         app:layout_constraintStart_toEndOf="@+id/textView_Desc" />
@@ -187,7 +187,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="16dp"
         android:text="Qty"
         app:layout_constraintBottom_toTopOf="@+id/listView_StockCard"
         app:layout_constraintStart_toEndOf="@+id/textView_Type" />
@@ -204,7 +204,7 @@
 
     <ListView
         android:id="@+id/listView_StockCard"
-        android:layout_width="353dp"
+        android:layout_width="380dp"
         android:layout_height="317dp"
         android:layout_marginTop="204dp"
         android:divider="@null"
@@ -218,9 +218,10 @@
         android:layout_height="35dp"
         android:layout_marginTop="20dp"
         android:background="@android:color/holo_blue_dark"
-        android:text="New"
+        android:text="Create Adjustment Voucher Request"
+        android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/listView_StockCard" />
 
