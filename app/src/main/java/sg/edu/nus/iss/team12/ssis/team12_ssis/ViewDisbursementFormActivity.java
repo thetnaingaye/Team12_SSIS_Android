@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -16,6 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,6 +33,7 @@ public class ViewDisbursementFormActivity extends Activity {
     SharedPreferences pref;
     String token;
     HashMap<String,String> h_disbursement;
+    ImageView img_logo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +42,19 @@ public class ViewDisbursementFormActivity extends Activity {
         //Decide whether is it gonna be Sigature-based or PIN-based
         //Ouuuu Yeah~~!!!
         setContentView(R.layout.activity_view_disbursement_form);
+
+        //setting logo onClick back to home
+        ImageView img_logo = findViewById(R.id.imageView_Title);
+        img_logo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ViewDisbursementFormActivity.this,MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("Role","Clerk");
+                startActivity(intent);
+            }
+        });
+
 
         h_disbursement = new HashMap<>();
 
@@ -82,89 +99,24 @@ public class ViewDisbursementFormActivity extends Activity {
         final ListView list = (ListView) findViewById(R.id.lv1);
         list.setAdapter(new MyAdaptor_Disbursement_Details(ViewDisbursementFormActivity.this,R.layout.row_disbursement_formdetail,ddlist));
 
+        Button btn_singnature = findViewById(R.id.button_singature);
         Button btnSign = findViewById(R.id.button_Sign);
-        btnSign.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-
-
-                List<DisbursementDetail> dfinal = new ArrayList<>();
-
-                for(int i=0;i<list.getCount();i++)
-                {
-                    //MyAdaptor_Disbursement_Details myAdaptor_disbursement_details = (MyAdaptor_Disbursement_Details)list.getAdapter();
-
-                    HashMap<String,String> hitem = (HashMap<String,String>) list.getAdapter().getItem(i);
-                       DisbursementDetail d = new DisbursementDetail(
-                               hitem.get("ID"),
-                               hitem.get("DisbursementID"),
-                               hitem.get("ItemID"),
-                               hitem.get("ActualQuantity"),
-                               hitem.get("QuantityCollected"),
-                               hitem.get("QuantityRequested"),
-                               hitem.get("Remarks"),
-                               hitem.get("UOM"));
-
-                    dfinal.add(d);
-
-                }
-
-                //constructing back Disbursement Object
-                Disbursement disbursement = new Disbursement(
-                        h_disbursement.get("DisbursementID"),
-                        h_disbursement.get("CollectionDate"),
-                        h_disbursement.get("CollectionPointID"),
-                        h_disbursement.get("DepartmentID"),
-                        h_disbursement.get("RepresentativeName"),
-                        "Collected");
-                disbursement.disbursementDetailsList = dfinal;
-
-                //testing data
-                String str= "Disbusement"+"\n"+disbursement.get("DisbursementID")+"\n"+disbursement.get("RepresentativeName")+"\n"+disbursement.get("Status")+"\n"+"Disbursement Details"+"\n";
-
-                for(DisbursementDetail r : dfinal)
-                {
-                    str += "ID"+r.get("ID")+"\t"+"Actual: "+r.get("ActualQuantity")+"\t"+" Collected: "+r.get("QuantityCollected")+"\n";
-                }
-                final  String url = InventoryCatalogue.URI_SERVICE+"UpdateDisburse";
-
-                new AsyncTask<Disbursement, Void, Void>() {
-
-                    @Override
-                    protected Void doInBackground(Disbursement... params) {
-
-                        Disbursement.updateDisbursement(params[0],token,url);
-                        return null;
-
-                    }
-
-                    @Override
-                    protected void onPostExecute(Void d) {
-                        Toast.makeText(ViewDisbursementFormActivity.this, "disbursement collected successfully", Toast.LENGTH_SHORT).show();
-
-                    }
-
-                }.execute(disbursement);
-
-
-                Intent intent = new Intent(ViewDisbursementFormActivity.this,CollectionListActivity.class);
-                intent.addFlags((Intent.FLAG_ACTIVITY_CLEAR_TOP));
-                startActivity(intent);
-
-            }
-        });
-
-        //setting logo onClick back to home
-        ImageView img_logo = findViewById(R.id.imageView_Title);
-        img_logo.setOnClickListener(new View.OnClickListener() {
+        btnSign.setVisibility(View.GONE);
+        ImageView imageView_sign = findViewById(R.id.imageView_sign);
+        imageView_sign.setVisibility(View.GONE);
+        btn_singnature.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ViewDisbursementFormActivity.this,MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.putExtra("Role","Clerk");
+                Intent intent = new Intent(ViewDisbursementFormActivity.this,SignatureActivity.class);
                 startActivity(intent);
+
+
+
             }
         });
+
+
+
 
     }
 
@@ -198,4 +150,98 @@ public class ViewDisbursementFormActivity extends Activity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+
+        final File file= new File(android.os.Environment.getExternalStorageDirectory(),"saved_signature/signature.png");
+        if(file.exists())
+        {
+            ImageView img = findViewById(R.id.imageView_sign);
+            img.setVisibility(View.VISIBLE);
+            Bitmap myBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+            img.setImageBitmap(myBitmap);
+            file.delete(); //  to be delete after successfully post image
+
+            final ListView list = (ListView) findViewById(R.id.lv1);
+
+            Button btnSign = findViewById(R.id.button_Sign);
+            btnSign.setVisibility(View.VISIBLE);
+            btnSign.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View arg0) {
+
+
+                    List<DisbursementDetail> dfinal = new ArrayList<>();
+
+                    for(int i=0;i<list.getCount();i++)
+                    {
+                        //MyAdaptor_Disbursement_Details myAdaptor_disbursement_details = (MyAdaptor_Disbursement_Details)list.getAdapter();
+
+                        HashMap<String,String> hitem = (HashMap<String,String>) list.getAdapter().getItem(i);
+                        DisbursementDetail d = new DisbursementDetail(
+                                hitem.get("ID"),
+                                hitem.get("DisbursementID"),
+                                hitem.get("ItemID"),
+                                hitem.get("ActualQuantity"),
+                                hitem.get("QuantityCollected"),
+                                hitem.get("QuantityRequested"),
+                                hitem.get("Remarks"),
+                                hitem.get("UOM"));
+
+                        dfinal.add(d);
+
+                    }
+
+                    //constructing back Disbursement Object
+                    Disbursement disbursement = new Disbursement(
+                            h_disbursement.get("DisbursementID"),
+                            h_disbursement.get("CollectionDate"),
+                            h_disbursement.get("CollectionPointID"),
+                            h_disbursement.get("DepartmentID"),
+                            h_disbursement.get("RepresentativeName"),
+                            "Collected");
+                    disbursement.disbursementDetailsList = dfinal;
+
+                    //testing data
+                    String str= "Disbusement"+"\n"+disbursement.get("DisbursementID")+"\n"+disbursement.get("RepresentativeName")+"\n"+disbursement.get("Status")+"\n"+"Disbursement Details"+"\n";
+
+                    for(DisbursementDetail r : dfinal)
+                    {
+                        str += "ID"+r.get("ID")+"\t"+"Actual: "+r.get("ActualQuantity")+"\t"+" Collected: "+r.get("QuantityCollected")+"\n";
+                    }
+                    final  String url = InventoryCatalogue.URI_SERVICE+"UpdateDisburse";
+
+                    new AsyncTask<Disbursement, Void, Void>() {
+
+                        @Override
+                        protected Void doInBackground(Disbursement... params) {
+
+                            Disbursement.updateDisbursement(params[0],token,url);
+                            return null;
+
+                        }
+
+                        @Override
+                        protected void onPostExecute(Void d) {
+                            Toast.makeText(ViewDisbursementFormActivity.this, "disbursement collected successfully", Toast.LENGTH_SHORT).show();
+
+                        }
+
+                    }.execute(disbursement);
+
+
+
+                    Intent intent = new Intent(ViewDisbursementFormActivity.this,CollectionListActivity.class);
+                    intent.addFlags((Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                    startActivity(intent);
+
+                }
+            });
+        }
+
+    }
+
+
 }

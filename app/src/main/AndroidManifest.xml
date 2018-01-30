@@ -3,6 +3,7 @@
     package="sg.edu.nus.iss.team12.ssis.team12_ssis">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -37,11 +38,13 @@
         <activity android:name=".AdjustmentVoucherActivity" />
         <activity android:name=".DisbursementListActivity" />
         <activity android:name=".AuthActivity">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity android:name=".LoginActivity">
             <intent-filter>
@@ -50,6 +53,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SignatureActivity"></activity>
     </application>
 
 </manifest>

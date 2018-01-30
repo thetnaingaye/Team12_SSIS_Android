@@ -6,26 +6,17 @@
     android:layout_height="match_parent"
     tools:context="sg.edu.nus.iss.team12.ssis.team12_ssis.ViewDisbursementFormActivity">
 
-    <ListView
-        android:id="@+id/lv1"
-        android:layout_width="353dp"
-        android:layout_height="305dp"
-        android:layout_marginTop="216dp"
-        android:divider="@null"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/button_Sign"
         android:layout_width="wrap_content"
-        android:layout_height="51dp"
+        android:layout_height="50dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:text="Sign"
+        android:layout_marginTop="64dp"
+        android:background="@android:color/holo_blue_dark"
+        android:text="OK"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.889"
+        app:layout_constraintHorizontal_bias="0.905"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lv1" />
 
@@ -188,8 +179,8 @@
         android:id="@+id/textView_Rep"
         android:layout_width="116dp"
         android:layout_height="20dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="4dp"
         android:text="Representative :"
         android:textColor="@android:color/holo_blue_dark"
         app:layout_constraintStart_toStartOf="parent"
@@ -198,10 +189,45 @@
     <TextView
         android:id="@+id/textView_Rep_Value"
         android:layout_width="116dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="4dp"
         android:text="Mr. Sum"
         app:layout_constraintStart_toEndOf="@+id/textView_Rep"
         app:layout_constraintTop_toBottomOf="@+id/lv1" />
+
+    <Button
+        android:id="@+id/button_singature"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginEnd="136dp"
+        android:layout_marginTop="64dp"
+        android:text="Sign"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lv1" />
+
+    <ImageView
+        android:id="@+id/imageView_sign"
+        android:layout_width="95dp"
+        android:layout_height="84dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/brandimg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_singature"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView_Rep_Value"
+        app:layout_constraintVertical_bias="0.613" />
+
+    <ListView
+        android:id="@+id/lv1"
+        android:layout_width="353dp"
+        android:layout_height="267dp"
+        android:layout_marginTop="188dp"
+        android:divider="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
