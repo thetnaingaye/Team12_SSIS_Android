@@ -27,9 +27,13 @@ public class SignatureMainLayout extends LinearLayout implements View.OnClickLis
 
     LinearLayout buttonsLayout;
     SignatureView signatureView;
+    Context myContext;
+
 
     public SignatureMainLayout(Context context) {
         super(context);
+        myContext = context;
+
         this.setOrientation(LinearLayout.VERTICAL);
 
         this.buttonsLayout = this.buttonsLayout();
@@ -122,6 +126,7 @@ public class SignatureMainLayout extends LinearLayout implements View.OnClickLis
             out.close();
 
             Toast.makeText(this.getContext(), "Signature saved.", Toast.LENGTH_LONG).show();
+            ((Activity)myContext).finish();
 
         } catch (Exception e) {
             e.printStackTrace();
