@@ -150,9 +150,9 @@ public class ViewDisbursementFormActivity extends Activity {
 
 
 
-//                Intent intent = new Intent(ViewDisbursementFormActivity.this,MainActivity.class);
-//                intent.addFlags((Intent.FLAG_ACTIVITY_CLEAR_TOP));
-//                startActivity(intent);
+                Intent intent = new Intent(ViewDisbursementFormActivity.this,CollectionListActivity.class);
+                intent.addFlags((Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                startActivity(intent);
 
             }
         });

@@ -2,8 +2,10 @@ package sg.edu.nus.iss.team12.ssis.team12_ssis;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -17,9 +19,11 @@ import sg.edu.nus.iss.team12.ssis.team12_ssis.model.RequisitionRecord;
 import sg.edu.nus.iss.team12.ssis.team12_ssis.model.RequisitionRecordDetail;
 
 public class ViewRequisitionFormListActivity extends Activity implements AdapterView.OnItemClickListener {
+    SharedPreferences pref;
+    String token;
+    String deptid;
 
     ListView requestList;
-    String deptid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +32,10 @@ public class ViewRequisitionFormListActivity extends Activity implements Adapter
         //If else condition for current and history ones. Different logic, i think....
         setContentView(R.layout.activity_view_requisition_form_list);
         requestList = findViewById(R.id.listview_requestlist);
-        deptid = "COMM";
 
+        pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        token = pref.getString("tokenKey", "hereJustPutRandomDefaultValue");
+        deptid = pref.getString("department", "hereJustPutRandomDefaultValue");
         bindListView();
 
         requestList.setOnItemClickListener(this);
@@ -43,7 +49,7 @@ public class ViewRequisitionFormListActivity extends Activity implements Adapter
             @Override
             protected List<RequisitionRecord> doInBackground(String... params) {
 
-                return RequisitionRecord.jread(params[0]);
+                return RequisitionRecord.jread_GetRequest(params[0],deptid,token);
             }
 
             @Override
@@ -64,7 +70,7 @@ public class ViewRequisitionFormListActivity extends Activity implements Adapter
             }
 
 
-        }.execute(InventoryCatalogue.URI_SERVICE +"GetRequestsList/"+deptid);
+        }.execute(InventoryCatalogue.URI_SERVICE +"GetRequestsList");
     }
 
     @Override

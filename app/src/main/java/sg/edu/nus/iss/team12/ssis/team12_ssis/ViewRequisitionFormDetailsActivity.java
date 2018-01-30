@@ -3,8 +3,10 @@ package sg.edu.nus.iss.team12.ssis.team12_ssis;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -20,12 +22,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import sg.edu.nus.iss.team12.ssis.team12_ssis.model.Disbursement;
 import sg.edu.nus.iss.team12.ssis.team12_ssis.model.DisbursementDetail;
 import sg.edu.nus.iss.team12.ssis.team12_ssis.model.InventoryCatalogue;
 import sg.edu.nus.iss.team12.ssis.team12_ssis.model.RequisitionRecord;
 import sg.edu.nus.iss.team12.ssis.team12_ssis.model.RequisitionRecordDetail;
 
 public class ViewRequisitionFormDetailsActivity extends Activity {
+
+    SharedPreferences pref;
+    String token;
+    String deptid;
+
+
     HashMap<String,String> h_record;
     List<RequisitionRecord> r_rlist = new ArrayList<>();
     RequisitionRecord record = new RequisitionRecord();
@@ -33,6 +42,11 @@ public class ViewRequisitionFormDetailsActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_requisition_form_details);
+
+        pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        token = pref.getString("tokenKey", "hereJustPutRandomDefaultValue");
+        deptid = pref.getString("department", "hereJustPutRandomDefaultValue");
+
         Bundle b = getIntent().getExtras();
         if (b != null) {
              h_record = (HashMap<String, String>) b.get("requisition_record");
@@ -45,14 +59,14 @@ public class ViewRequisitionFormDetailsActivity extends Activity {
                  button_Reject.setVisibility(View.GONE);
              }
         }
-        String deptid = h_record.get("DepartmentID");
+        final String deptid = h_record.get("DepartmentID");
 
         new AsyncTask<String, Void, List<RequisitionRecord>>() {
 
             @Override
             protected List<RequisitionRecord> doInBackground(String... params) {
 
-                return RequisitionRecord.jread(params[0]);
+                return RequisitionRecord.jread_GetRequest(params[0],deptid,token);
             }
 
             @Override
@@ -61,7 +75,7 @@ public class ViewRequisitionFormDetailsActivity extends Activity {
                 proceed(r_rlist);
 
             }
-        }.execute(InventoryCatalogue.URI_SERVICE +"GetRequestsList/"+deptid);
+        }.execute(InventoryCatalogue.URI_SERVICE +"GetRequestsList");
     }
 
     private void proceed(List<RequisitionRecord> rlist){
@@ -104,12 +118,34 @@ public class ViewRequisitionFormDetailsActivity extends Activity {
                 button_Confirm.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String str="";
-                        for (RequisitionRecordDetail rd : record.requisitionRecordDetailsList) {
-                            rd.put("Status", "Approved");
-                            str += rd.get("ItemID") + ":" + rd.get("Status") + "\n";
-                        }
-                        Toast.makeText(ViewRequisitionFormDetailsActivity.this, str, Toast.LENGTH_SHORT).show();
+
+
+                        final  String url = InventoryCatalogue.URI_SERVICE+"ApproveRequisition";
+
+                        new AsyncTask<RequisitionRecord, Void, Void>() {
+                            String str;
+
+                            @Override
+                            protected Void doInBackground(RequisitionRecord... params) {
+
+                                str = RequisitionRecord.approveRequest(params[0],token,url);
+                                return null;
+
+                            }
+
+                            @Override
+                            protected void onPostExecute(Void d) {
+                                Toast.makeText(ViewRequisitionFormDetailsActivity.this, str, Toast.LENGTH_SHORT).show();
+
+                            }
+
+                        }.execute(record);
+
+//                        for (RequisitionRecordDetail rd : record.requisitionRecordDetailsList) {
+//                            rd.put("Status", "Approved");
+//                            str += rd.get("ItemID") + ":" + rd.get("Status") + "\n";
+//                        }
+//                        Toast.makeText(ViewRequisitionFormDetailsActivity.this, str, Toast.LENGTH_SHORT).show();
 
                         d.dismiss();
                         Intent intent = new Intent(ViewRequisitionFormDetailsActivity.this,ViewRequisitionFormListActivity.class);
@@ -157,15 +193,39 @@ public class ViewRequisitionFormDetailsActivity extends Activity {
                             record.put("Remarks",editText_remark.getText().toString());
                         }
 
-                        String str= record.get("Remarks")+"\n";
-                        for (RequisitionRecordDetail rd : record.requisitionRecordDetailsList) {
-                            rd.put("Status", "Rejected");
+                        final  String url = InventoryCatalogue.URI_SERVICE+"RejectRequisition";
 
-                            str += rd.get("ItemID") + ":" + rd.get("Status") +":"+ "\n";
-                        }
-                        Toast.makeText(ViewRequisitionFormDetailsActivity.this, str, Toast.LENGTH_SHORT).show();
+                        new AsyncTask<RequisitionRecord, Void, Void>() {
+                            String str;
+
+                            @Override
+                            protected Void doInBackground(RequisitionRecord... params) {
+
+                                str = RequisitionRecord.rejectRequest(params[0],token,url);
+                                return null;
+
+                            }
+
+                            @Override
+                            protected void onPostExecute(Void d) {
+                                Toast.makeText(ViewRequisitionFormDetailsActivity.this, str, Toast.LENGTH_SHORT).show();
+
+                            }
+
+                        }.execute(record);
+
+//                        String str= record.get("Remarks")+"\n";
+//                        for (RequisitionRecordDetail rd : record.requisitionRecordDetailsList) {
+//                            rd.put("Status", "Rejected");
+//
+//                            str += rd.get("ItemID") + ":" + rd.get("Status") +":"+ "\n";
+//                        }
+//                        Toast.makeText(ViewRequisitionFormDetailsActivity.this, str, Toast.LENGTH_SHORT).show();
 
                         d.dismiss();
+                        Intent intent = new Intent(ViewRequisitionFormDetailsActivity.this,ViewRequisitionFormListActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
                     }
                 });
                 d.setCancelable(false);

@@ -17,7 +17,7 @@ import java.util.List;
 
 public class InventoryCatalogue extends HashMap<String,String> {
 
-    public static final String URI_SERVICE = "http://192.168.1.15/Team12_SSIS/WebServices/Service.svc/";
+    public static final String URI_SERVICE = "http://172.17.248.45/Team12_SSIS/WebServices/Service.svc/";
 
     public InventoryCatalogue(String itemID,String bin,String bufferstocklevel, String catId, String desc,
                               String discon,String level,String reorderlevel,
@@ -47,17 +47,44 @@ public class InventoryCatalogue extends HashMap<String,String> {
             for (int i =0; i<a.length(); i++) {
                 JSONObject b = a.getJSONObject(i);
                 list.add(new    InventoryCatalogue(b.getString("ItemID"),
-                                b.getString("BIN"),
-                                Integer.toString(b.getInt("BufferStockLevel")),
-                                b.getString("CategoryID"),
-                                b.getString("Description"),
-                                b.getString("Discontinued"),
-                                Integer.toString(b.getInt("Level")),
-                                Integer.toString(b.getInt("ReorderLevel")),
-                                Integer.toString(b.getInt("ReorderQty")),
-                                b.getString("Shelf"),b.getString("UOM"),
-                                Integer.toString(b.getInt("UnitsInStock")),
-                                Integer.toString(b.getInt("UnitsOnOrder"))));
+                        b.getString("BIN"),
+                        Integer.toString(b.getInt("BufferStockLevel")),
+                        b.getString("CategoryID"),
+                        b.getString("Description"),
+                        b.getString("Discontinued"),
+                        Integer.toString(b.getInt("Level")),
+                        Integer.toString(b.getInt("ReorderLevel")),
+                        Integer.toString(b.getInt("ReorderQty")),
+                        b.getString("Shelf"),b.getString("UOM"),
+                        Integer.toString(b.getInt("UnitsInStock")),
+                        Integer.toString(b.getInt("UnitsOnOrder"))));
+            }
+        } catch (Exception e) {
+            Log.e("InventoryItem", "JSONArray error");
+        }
+        return(list);
+    }
+
+
+
+    public static List<InventoryCatalogue> jread_old(String url) {
+        List<InventoryCatalogue> list = new ArrayList<InventoryCatalogue>();
+        JSONArray a = JSONParser.getJSONArrayFromUrl(url);
+        try {
+            for (int i =0; i<a.length(); i++) {
+                JSONObject b = a.getJSONObject(i);
+                list.add(new    InventoryCatalogue(b.getString("ItemID"),
+                        b.getString("BIN"),
+                        Integer.toString(b.getInt("BufferStockLevel")),
+                        b.getString("CategoryID"),
+                        b.getString("Description"),
+                        b.getString("Discontinued"),
+                        Integer.toString(b.getInt("Level")),
+                        Integer.toString(b.getInt("ReorderLevel")),
+                        Integer.toString(b.getInt("ReorderQty")),
+                        b.getString("Shelf"),b.getString("UOM"),
+                        Integer.toString(b.getInt("UnitsInStock")),
+                        Integer.toString(b.getInt("UnitsOnOrder"))));
             }
         } catch (Exception e) {
             Log.e("InventoryItem", "JSONArray error");

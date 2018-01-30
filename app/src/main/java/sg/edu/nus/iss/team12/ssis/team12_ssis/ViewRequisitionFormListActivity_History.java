@@ -2,8 +2,10 @@ package sg.edu.nus.iss.team12.ssis.team12_ssis;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -21,8 +23,12 @@ import sg.edu.nus.iss.team12.ssis.team12_ssis.model.RequisitionRecordDetail;
 
 public class ViewRequisitionFormListActivity_History extends Activity implements AdapterView.OnItemClickListener {
 
-    ListView requestList;
+    SharedPreferences pref;
+    String token;
     String deptid;
+
+    ListView requestList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +37,10 @@ public class ViewRequisitionFormListActivity_History extends Activity implements
         //If else condition for current and history ones. Different logic, i think....
         setContentView(R.layout.activity_view_requisition_form_list_history);
         requestList = findViewById(R.id.listview_requestlist);
-        deptid = "COMM";
+
+        pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        token = pref.getString("tokenKey", "hereJustPutRandomDefaultValue");
+        deptid = pref.getString("department", "hereJustPutRandomDefaultValue");
 
         bindListView();
 
@@ -46,7 +55,7 @@ public class ViewRequisitionFormListActivity_History extends Activity implements
             @Override
             protected List<RequisitionRecord> doInBackground(String... params) {
 
-                return RequisitionRecord.jread(params[0]);
+                return RequisitionRecord.jread_GetRequest(params[0],deptid,token);
             }
 
             @Override
@@ -67,7 +76,7 @@ public class ViewRequisitionFormListActivity_History extends Activity implements
             }
 
 
-        }.execute(InventoryCatalogue.URI_SERVICE +"GetRequestsList/"+deptid);
+        }.execute(InventoryCatalogue.URI_SERVICE +"GetRequestsList");
     }
 
     @Override
