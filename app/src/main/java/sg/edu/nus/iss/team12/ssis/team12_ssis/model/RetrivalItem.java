@@ -109,7 +109,7 @@ public class RetrivalItem extends HashMap<String,String> {
 
                 jsonArray_rlist.put(j);
             }
-            jsonObject.put("tempObj", jsonArray_rlist);
+            jsonObject.put("tempList", jsonArray_rlist);
             jsonObject.put("token",token);
 
             String str =jsonObject.toString();
