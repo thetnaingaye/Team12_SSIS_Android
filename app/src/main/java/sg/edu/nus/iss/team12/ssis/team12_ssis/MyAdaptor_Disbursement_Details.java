@@ -50,6 +50,7 @@ public class MyAdaptor_Disbursement_Details extends ArrayAdapter<DisbursementDet
         token = pref.getString("tokenKey", "hereJustPutRandomDefaultValue");
         final View v = inflater.inflate(resource, null);
         final HashMap<String,String> item = items.get(position);
+        item.put("QuantityCollected",item.get("ActualQuantity").toString());
 
         final EditText editText_Allocation = (EditText) v.findViewById(R.id.editText_Allocation_Value); // collected qty
         final TextView textView_item = (TextView) v.findViewById(R.id.textView_ItemCode_Value);

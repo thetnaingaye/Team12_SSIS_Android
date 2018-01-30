@@ -140,14 +140,11 @@ public class ViewDisbursementFormActivity extends Activity {
 
                     @Override
                     protected void onPostExecute(Void d) {
-                        Toast.makeText(ViewDisbursementFormActivity.this, "hi", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ViewDisbursementFormActivity.this, "disbursement collected successfully", Toast.LENGTH_SHORT).show();
 
                     }
 
                 }.execute(disbursement);
-//                Disbursement.updateDisbursement(disbursement,token,url);
-//                Toast.makeText(ViewDisbursementFormActivity.this, str, Toast.LENGTH_SHORT).show();
-
 
 
                 Intent intent = new Intent(ViewDisbursementFormActivity.this,CollectionListActivity.class);
