@@ -25,6 +25,8 @@ public class InventoryDetailActivity extends Activity {
     List<RetrivalItem> retrivalList;
     SharedPreferences pref;
     String token;
+    int unitsToRetrive;
+    Button btnAllocate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,9 @@ public class InventoryDetailActivity extends Activity {
         Bundle b = getIntent().getExtras();
         final HashMap<String,String> item = (HashMap<String, String>) b.get("item");
         final String itemID = item.get("ItemID").toString();
+
+        btnAllocate = findViewById(R.id.button_Allocate);
+
         retrivalList = new ArrayList<>();
         String uri = InventoryCatalogue.URI_SERVICE + "GetRelevantListByDept";
         new AsyncTask<String, Void, List<RetrivalItem>>() {
@@ -50,13 +55,17 @@ public class InventoryDetailActivity extends Activity {
             protected void onPostExecute(List<RetrivalItem> rlist) {
                 retrivalList = rlist;
                 TextView textQtyToTake = (TextView)findViewById(R.id.textView_QtyToTake_Value);
-                int unitsToRetrive = 0;
+                unitsToRetrive = 0;
                 for (RetrivalItem r:rlist ) {
 
                     unitsToRetrive +=Integer.parseInt(r.get("RequestedQty"));
 
                 }
                 textQtyToTake.setText(String.valueOf(unitsToRetrive));
+                if(unitsToRetrive == 0)
+                {
+                    btnAllocate.setEnabled(false);
+                }
 
             }
 
@@ -66,8 +75,6 @@ public class InventoryDetailActivity extends Activity {
         showDetails(item);
 
 
-
-        Button btnAllocate = findViewById(R.id.button_Allocate);
         btnAllocate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {

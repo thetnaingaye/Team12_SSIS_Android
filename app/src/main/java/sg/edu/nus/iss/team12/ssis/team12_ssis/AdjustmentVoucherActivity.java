@@ -42,13 +42,16 @@ public class AdjustmentVoucherActivity extends Activity {
 
 
 
-        Button btnSave = findViewById(R.id.button_Save);
+        final Button btnSave = findViewById(R.id.button_Save);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
 
                 EditText editText_qty = findViewById(R.id.editText_AVQty_Value);
                 EditText editText_desc = findViewById(R.id.editText_Desc_Value);
+                btnSave.setEnabled(false);
+                btnSave.setClickable(false);
+                btnSave.setText(R.string.db_message);
 
                 Spinner s =(Spinner) findViewById(R.id.spinner_addminus);
                 int spinner_index = s.getSelectedItemPosition();
@@ -85,6 +88,7 @@ public class AdjustmentVoucherActivity extends Activity {
                     protected void onPostExecute(Void d) {
                         result_message = (result_message.contains("Success"))? "new adjustment voucher created successfully" : "new adjust voucher failed to create";
                         Toast.makeText(AdjustmentVoucherActivity.this, result_message, Toast.LENGTH_SHORT).show();
+                        finish();
 
                     }
 

@@ -18,7 +18,7 @@
     <TextView
         android:id="@+id/textView_stock_desc"
         android:layout_width="150dp"
-        android:layout_height="30dp"
+        android:layout_height="50dp"
         android:layout_marginStart="12dp"
         android:gravity="center_vertical"
         android:text="TextView"

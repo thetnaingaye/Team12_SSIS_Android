@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -101,7 +102,8 @@ public class ViewDisbursementFormActivity extends Activity {
 
         Button btn_singnature = findViewById(R.id.button_singature);
         Button btnSign = findViewById(R.id.button_Sign);
-        btnSign.setVisibility(View.GONE);
+        btnSign.setEnabled(false);
+        btnSign.setBackgroundColor(Color.WHITE);
         ImageView imageView_sign = findViewById(R.id.imageView_sign);
         imageView_sign.setVisibility(View.GONE);
         btn_singnature.setOnClickListener(new View.OnClickListener() {
@@ -166,12 +168,15 @@ public class ViewDisbursementFormActivity extends Activity {
 
             final ListView list = (ListView) findViewById(R.id.lv1);
 
-            Button btnSign = findViewById(R.id.button_Sign);
-            btnSign.setVisibility(View.VISIBLE);
+            final Button btnSign = findViewById(R.id.button_Sign);
+            btnSign.setEnabled(true);
+            btnSign.setBackgroundColor(Color.rgb(26,110,204));
             btnSign.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View arg0) {
-
+                    btnSign.setEnabled(false);
+                    btnSign.setClickable(false);
+                    btnSign.setText("...");
 
                     List<DisbursementDetail> dfinal = new ArrayList<>();
 
@@ -226,6 +231,7 @@ public class ViewDisbursementFormActivity extends Activity {
                         @Override
                         protected void onPostExecute(Void d) {
                             Toast.makeText(ViewDisbursementFormActivity.this, "disbursement collected successfully", Toast.LENGTH_SHORT).show();
+                            finish();
 
                         }
 

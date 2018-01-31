@@ -27,5 +27,6 @@
 
     <string name="option1">Home</string>
     <string name="option2">Log Out</string>
+    <string name="db_message">updating data... </string>
 
 </resources>

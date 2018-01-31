@@ -88,6 +88,7 @@ public class CollectionListActivity extends Activity implements AdapterView.OnIt
 
             @Override
             protected void onPostExecute(List<Disbursement> rList) {
+                disbursementList.clear();
                 for(Disbursement d:rList){
                     if(d.get("Status").equals("Pending Collection")){
                         disbursementList.add(d);

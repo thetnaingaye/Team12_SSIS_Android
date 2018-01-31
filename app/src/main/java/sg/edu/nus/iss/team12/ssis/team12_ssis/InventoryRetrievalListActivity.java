@@ -37,13 +37,13 @@ public class InventoryRetrievalListActivity extends Activity {
         textView_Desc.setText(item.get("Description"));
         final ListView list = (ListView) findViewById(R.id.lv1);
         final String itemID = item.get("ItemID").toString();
-        String uri = InventoryCatalogue.URI_SERVICE +"GetRelevantListByDept";
+        String uri = InventoryCatalogue.URI_SERVICE + "GetRelevantListByDept";
         new AsyncTask<String, Void, List<RetrivalItem>>() {
 
             @Override
             protected List<RetrivalItem> doInBackground(String... params) {
 
-                return RetrivalItem.jread_getItemByDept(params[0],itemID,token);
+                return RetrivalItem.jread_getItemByDept(params[0], itemID, token);
             }
 
             @Override
@@ -57,10 +57,13 @@ public class InventoryRetrievalListActivity extends Activity {
         }.execute(uri);
 
 
-        Button btnSave = findViewById(R.id.button_Save);
+        final Button btnSave = findViewById(R.id.button_Save);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
+                btnSave.setEnabled(false);
+                btnSave.setClickable(false);
+                btnSave.setText(R.string.db_message);
                 List<RetrivalItem> finalList = new ArrayList<RetrivalItem>();
                 String str = "";
                 for (int i = 0; i < list.getCount(); i++) {
@@ -74,7 +77,7 @@ public class InventoryRetrievalListActivity extends Activity {
 //                }
 
 
-                final  String url = InventoryCatalogue.URI_SERVICE+"SubmitRetrieval";
+                final String url = InventoryCatalogue.URI_SERVICE + "SubmitRetrieval";
 
                 new AsyncTask<List<RetrivalItem>, Void, Void>() {
                     String result;
@@ -82,7 +85,7 @@ public class InventoryRetrievalListActivity extends Activity {
                     @Override
                     protected Void doInBackground(List<RetrivalItem>... params) {
 
-                        result = RetrivalItem.submitRetrival(params[0],token,url);
+                        result = RetrivalItem.submitRetrival(params[0], token, url);
                         return null;
 
                     }
@@ -90,11 +93,13 @@ public class InventoryRetrievalListActivity extends Activity {
                     @Override
                     protected void onPostExecute(Void d) {
                         Toast.makeText(InventoryRetrievalListActivity.this, result, Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(InventoryRetrievalListActivity.this, InventoryListActivity.class);
+                        intent.addFlags((Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                        startActivity(intent);
 
                     }
 
                 }.execute(finalList);
-
 
 
 //                Toast.makeText(InventoryRetrievalListActivity.this, str, Toast.LENGTH_SHORT).show();
