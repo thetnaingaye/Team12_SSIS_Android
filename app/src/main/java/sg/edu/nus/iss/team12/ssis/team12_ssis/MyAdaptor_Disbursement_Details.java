@@ -49,27 +49,25 @@ public class MyAdaptor_Disbursement_Details extends ArrayAdapter<DisbursementDet
         pref = PreferenceManager.getDefaultSharedPreferences(getContext());
         token = pref.getString("tokenKey", "hereJustPutRandomDefaultValue");
         final View v = inflater.inflate(resource, null);
-        final HashMap<String,String> item = items.get(position);
-        item.put("QuantityCollected",item.get("ActualQuantity").toString());
+        final HashMap<String, String> item = items.get(position);
+        item.put("QuantityCollected", item.get("ActualQuantity").toString());
 
         final EditText editText_Allocation = (EditText) v.findViewById(R.id.editText_Allocation_Value); // collected qty
         final TextView textView_item = (TextView) v.findViewById(R.id.textView_ItemCode_Value);
-        final TextView textView_reqQty = (TextView)v.findViewById(R.id.textView_RequestedQty_Value); //actual qty
+        final TextView textView_reqQty = (TextView) v.findViewById(R.id.textView_RequestedQty_Value); //actual qty
 
         new AsyncTask<String, Void, List<InventoryCatalogue>>() {
 
             @Override
             protected List<InventoryCatalogue> doInBackground(String... params) {
 
-                return InventoryCatalogue.jread(params[0],token);
+                return InventoryCatalogue.jread(params[0], token);
             }
 
             @Override
             protected void onPostExecute(List<InventoryCatalogue> resultInventoryList) {
-                for(InventoryCatalogue inventoryCatalogue:resultInventoryList)
-                {
-                    if(inventoryCatalogue.get("ItemID").toString().equals(item.get("ItemID")))
-                    {
+                for (InventoryCatalogue inventoryCatalogue : resultInventoryList) {
+                    if (inventoryCatalogue.get("ItemID").toString().equals(item.get("ItemID"))) {
                         textView_item.setText(inventoryCatalogue.get("Description"));
                     }
                 }
@@ -78,7 +76,6 @@ public class MyAdaptor_Disbursement_Details extends ArrayAdapter<DisbursementDet
 
 
         }.execute(InventoryCatalogue.URI_SERVICE + "GetInventoryList");
-
 
 
         textView_reqQty.setText((item.get("ActualQuantity")));
@@ -98,9 +95,31 @@ public class MyAdaptor_Disbursement_Details extends ArrayAdapter<DisbursementDet
 
             public void onTextChanged(CharSequence s, int start,
                                       int before, int count) {
-                //get value from edittext and set to book object's attribute
-                item.put("QuantityCollected",editText_Allocation.getText().toString());
+                String input = editText_Allocation.getText().toString().trim();
+                String actqty_str = item.get("ActualQuantity").toString();
+                int input_int = 0;
+
+
+                int actqty = Integer.parseInt(actqty_str);
+
+                if (input.trim().equals("")) {
+                    item.put("QuantityCollected", "0");
+                } else {
+                    input_int = Integer.parseInt(input);
+                }
+
+                if (input_int > actqty) {
+                    editText_Allocation.setText(actqty_str);
+                } else {
+                    item.put("QuantityCollected", input);
+                }
+
+                if (input.equals("")) {
+                    item.put("QuantityCollected", "0");
+                }
+
             }
+
         });
 
         return v;

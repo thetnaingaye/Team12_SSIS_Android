@@ -125,7 +125,7 @@ public class SignatureMainLayout extends LinearLayout implements View.OnClickLis
             out.flush();
             out.close();
 
-            Toast.makeText(this.getContext(), "Signature saved.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this.getContext(), "Signature saved.", Toast.LENGTH_SHORT).show();
             ((Activity)myContext).finish();
 
         } catch (Exception e) {

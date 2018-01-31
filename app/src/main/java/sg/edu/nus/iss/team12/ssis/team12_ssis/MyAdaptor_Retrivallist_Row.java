@@ -90,8 +90,32 @@ public class MyAdaptor_Retrivallist_Row extends ArrayAdapter<RetrivalItem> {
 
             public void onTextChanged(CharSequence s, int start,
                                       int before, int count) {
-                //get value from edittext and set to book object's attribute
-                item.put("ActualQty",editText_Allocation.getText().toString());
+
+                String input = editText_Allocation.getText().toString().trim();
+                int input_int = 0;
+
+
+                String reqStr = item.get("RequestedQty").toString();
+
+                int actqty = Integer.parseInt(reqStr);
+
+                if (input.trim().equals("")) {
+                    item.put("ActualQty", "0");
+                } else {
+                    input_int = Integer.parseInt(input);
+                }
+
+                if (input_int > actqty) {
+                    editText_Allocation.setText(reqStr);
+                } else {
+                    item.put("ActualQty",input);
+                }
+
+                if (input.equals("")) {
+                    item.put("ActualQty", "0");
+                }
+
+
             }
         });
 
