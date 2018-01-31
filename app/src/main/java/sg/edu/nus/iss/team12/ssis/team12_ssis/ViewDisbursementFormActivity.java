@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,6 +21,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -164,6 +167,7 @@ public class ViewDisbursementFormActivity extends Activity {
             img.setVisibility(View.VISIBLE);
             Bitmap myBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
             img.setImageBitmap(myBitmap);
+            UploadFile();
             file.delete(); //  to be delete after successfully post image
 
             final ListView list = (ListView) findViewById(R.id.lv1);
@@ -247,6 +251,39 @@ public class ViewDisbursementFormActivity extends Activity {
             });
         }
 
+    }
+
+    public void UploadFile(){
+        try {
+            // Set your file path here
+
+            final FileInputStream fstrm = new FileInputStream(android.os.Environment.getExternalStorageDirectory().toString()+"/saved_signature/signature.png");
+
+
+            // Set your server page url (and the file title/description)
+
+
+            new AsyncTask<FileInputStream, Void, Void>() {
+
+                @Override
+                protected Void doInBackground(FileInputStream... params) {
+                    HttpFileUpload hfu = new HttpFileUpload("http://172.17.248.45/Team12_SSIS/FormUpload.aspx", h_disbursement.get("DisbursementID"));
+                    hfu.Send_Now(fstrm,"test_android.png");
+                    return null;
+
+                }
+
+                @Override
+                protected void onPostExecute(Void d) {
+
+                }
+
+            }.execute(fstrm);
+
+
+        } catch (FileNotFoundException e) {
+            // Error: File not found
+        }
     }
 
 

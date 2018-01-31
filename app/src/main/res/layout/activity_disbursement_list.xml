@@ -114,5 +114,19 @@
 
     </TableLayout>
 
+    <TextView
+        android:id="@+id/textView_noList"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="THERE IS NO PAST RECORDS..."
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499" />
+
 
 </android.support.constraint.ConstraintLayout>

@@ -53,6 +53,25 @@ public class StockCardActivity extends Activity {
             protected void onPostExecute(List<StockCard> rlist) {
 
                 list.setAdapter(new MyAdaptor_StockCard_Row(StockCardActivity.this,R.layout.row_stockcard,rlist));
+                TextView textView_noLabel = findViewById(R.id.textView_noList);
+                TextView textView_Date_Header = findViewById(R.id.textView_Date);
+                TextView textView_Desc_Header = findViewById(R.id.textView_Desc);
+                TextView textView_Type_Header = findViewById(R.id.textView_Type);
+                TextView textView_Qty_Header = findViewById(R.id.textView_Qty);
+                TextView textView_Balance_Header = findViewById(R.id.textView_Balance);
+                if(rlist.size() == 0)
+                {
+                    textView_noLabel.setVisibility(View.VISIBLE);
+                    textView_Date_Header.setVisibility(View.GONE);
+                    textView_Desc_Header.setVisibility(View.GONE);
+                    textView_Type_Header.setVisibility(View.GONE);
+                    textView_Qty_Header.setVisibility(View.GONE);
+                    textView_Balance_Header.setVisibility(View.GONE);
+                }
+                else
+                {
+                    textView_noLabel.setVisibility(View.GONE);
+                }
 
             }
 

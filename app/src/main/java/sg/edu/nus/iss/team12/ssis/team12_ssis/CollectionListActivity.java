@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -26,7 +27,10 @@ public class CollectionListActivity extends Activity implements AdapterView.OnIt
 
     List<Disbursement> disbursementList = new ArrayList<>();
     ListView collectionDepList;
-
+    TextView textView_noLabel;
+    TextView textView_dept_header;
+    TextView textView_dId_header;
+    TextView textView_prgress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +40,12 @@ public class CollectionListActivity extends Activity implements AdapterView.OnIt
         token = pref.getString("tokenKey", "hereJustPutRandomDefaultValue");
 
         collectionDepList = findViewById(R.id.listview_dept);
+        textView_noLabel = findViewById(R.id.textView_noList);
+        textView_dept_header = findViewById(R.id.textView_Dept);
+        textView_dId_header = findViewById(R.id.textView_d_id);
+        textView_prgress = findViewById(R.id.textView_progress);
 
+        textView_noLabel.setVisibility(View.GONE);
         bindListView();
 
         Spinner s =(Spinner) findViewById(R.id.spinner);
@@ -59,6 +68,15 @@ public class CollectionListActivity extends Activity implements AdapterView.OnIt
 
                 }
                 collectionDepList.setAdapter(new MyAdaptor_DeptCollection_Row(CollectionListActivity.this, R.layout.row_dept_forcollection, list_collecitonpoints));
+                if(list_collecitonpoints.size() == 0)
+                {
+                    textView_noLabel.setVisibility(View.VISIBLE);
+                    textView_noLabel.setText("THERE IS NO OUTSTANDING RECORDS...");
+                }
+                else
+                {
+                    textView_noLabel.setVisibility(View.GONE);
+                }
 
 
             }
@@ -78,12 +96,18 @@ public class CollectionListActivity extends Activity implements AdapterView.OnIt
 
     private void bindListView()
     {
-        new AsyncTask<String, Void, List<Disbursement>>() {
+
+        new AsyncTask<String, Integer, List<Disbursement>>() {
 
             @Override
             protected List<Disbursement> doInBackground(String... params) {
 
                 return Disbursement.jread(params[0],token);
+            }
+
+            @Override
+            protected void onProgressUpdate(Integer...progress) {
+                textView_prgress.setText("Retrieving data...." + "\nCompleted...." + progress[0]+ "%");
             }
 
             @Override
@@ -96,6 +120,15 @@ public class CollectionListActivity extends Activity implements AdapterView.OnIt
                 }
                 //disbursementList = rList;
                 collectionDepList.setAdapter(new MyAdaptor_DeptCollection_Row(CollectionListActivity.this, R.layout.row_dept_forcollection, disbursementList));
+                if(disbursementList.size() == 0)
+                {
+                    textView_noLabel.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    textView_noLabel.setVisibility(View.GONE);
+                }
+
             }
 
 

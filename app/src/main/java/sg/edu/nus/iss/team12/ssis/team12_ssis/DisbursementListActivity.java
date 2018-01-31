@@ -60,6 +60,7 @@ public class DisbursementListActivity extends Activity implements AdapterView.On
                     }
                 }
                 list.setAdapter(new MyAdaptor_DisbursementbyDept_Row(DisbursementListActivity.this, R.layout.row_disburment_bydept, disbursementList));
+
             }
 
 
