@@ -20,15 +20,14 @@
 
     <TextView
         android:id="@+id/textView_Description_Value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_width="253dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:text="ChalkBoard Eraser"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.363"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView_Title"
         app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -36,7 +35,7 @@
         android:id="@+id/tableLayout"
         android:layout_width="195dp"
         android:layout_height="84dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="80dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
