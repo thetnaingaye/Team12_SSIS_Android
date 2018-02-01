@@ -3,6 +3,7 @@ package sg.edu.nus.iss.team12.ssis.team12_ssis;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -41,6 +42,7 @@ public class ViewDisbursementFormActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         token = pref.getString("tokenKey","token");
         //Decide whether is it gonna be Sigature-based or PIN-based

@@ -3,6 +3,7 @@ package sg.edu.nus.iss.team12.ssis.team12_ssis;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -22,6 +23,7 @@ public class LoginActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         if(pref.getString("role","default_role").equals("Clerk") || pref.getString("role","default_role").equals("HOD"))
         {

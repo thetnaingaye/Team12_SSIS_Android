@@ -3,6 +3,7 @@ package sg.edu.nus.iss.team12.ssis.team12_ssis;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -34,6 +35,7 @@ public class CollectionListActivity extends Activity implements AdapterView.OnIt
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         //If else condition and set the header label to either "COLLECTIONS" or "OUTSTANDING DISBURSEMENT"
         setContentView(R.layout.activity_collection_list);
         pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());

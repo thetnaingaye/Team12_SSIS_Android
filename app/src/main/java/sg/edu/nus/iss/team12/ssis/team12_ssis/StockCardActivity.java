@@ -3,6 +3,7 @@ package sg.edu.nus.iss.team12.ssis.team12_ssis;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -25,6 +26,7 @@ public class StockCardActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_stock_card);
         pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         token = pref.getString("tokenKey", "hereJustPutRandomDefaultValue");
@@ -59,9 +61,11 @@ public class StockCardActivity extends Activity {
                 TextView textView_Type_Header = findViewById(R.id.textView_Type);
                 TextView textView_Qty_Header = findViewById(R.id.textView_Qty);
                 TextView textView_Balance_Header = findViewById(R.id.textView_Balance);
+
                 if(rlist.size() == 0)
                 {
                     textView_noLabel.setVisibility(View.VISIBLE);
+                    textView_noLabel.setText("THERE ARE NO PAST RECORDS...");
                     textView_Date_Header.setVisibility(View.GONE);
                     textView_Desc_Header.setVisibility(View.GONE);
                     textView_Type_Header.setVisibility(View.GONE);
