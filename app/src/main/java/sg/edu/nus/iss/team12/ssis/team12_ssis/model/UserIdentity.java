@@ -11,7 +11,7 @@ import java.util.HashMap;
  */
 
 public class UserIdentity extends HashMap<String, String> {
-    final static String host = "http://172.17.248.45/Team12_SSIS/WebServices/AuthService.svc/Login";
+    final static String host = "http://172.17.253.240/Team12_SSIS/WebServices/AuthService.svc/Login";
 
     public UserIdentity(String userName, String password){
         put("userName", userName);
