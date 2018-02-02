@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -98,6 +100,7 @@ public class ViewRequisitionFormDetailsActivity extends Activity {
 
         ListView list = findViewById(R.id.lv1);
         list.setAdapter(new MyAdaptor_RequestItem_Row(ViewRequisitionFormDetailsActivity.this, R.layout.row_requestitem, record.requisitionRecordDetailsList));
+
 
         //Approve Condition
         Button button_Approve = findViewById(R.id.button_Approve);
@@ -248,5 +251,35 @@ public class ViewRequisitionFormDetailsActivity extends Activity {
             }
         });
 
+    }
+
+    //menu option
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.option1:
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                finish();
+                startActivity(intent);
+                return true;
+
+            case R.id.option2:
+                pref.edit().clear().commit();
+                Intent intent_logout = new Intent(getApplicationContext(),LoginActivity.class);
+                finish();
+                startActivity(intent_logout);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

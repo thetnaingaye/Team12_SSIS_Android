@@ -76,4 +76,9 @@ public class MyAdaptor_RequestItem_Row extends ArrayAdapter<RequisitionRecordDet
 
         return v;
     }
+
+    @Override
+    public boolean isEnabled(int position) {
+        return false;
+    }
 }

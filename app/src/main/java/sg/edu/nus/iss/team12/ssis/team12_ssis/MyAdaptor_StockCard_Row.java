@@ -48,10 +48,12 @@ public class MyAdaptor_StockCard_Row extends ArrayAdapter<StockCard> {
             textView_qty.setText(item.get("Quantity"));
             textView_balance.setText(item.get("Balance"));
 
-
-
         }
 
         return v;
+    }
+    @Override
+    public boolean isEnabled(int position) {
+        return false;
     }
 }
