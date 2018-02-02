@@ -137,7 +137,7 @@ public class ViewRequisitionFormDetailsActivity extends Activity {
 
                             @Override
                             protected void onPostExecute(Void d) {
-                                Toast.makeText(ViewRequisitionFormDetailsActivity.this, str, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ViewRequisitionFormDetailsActivity.this, str, Toast.LENGTH_LONG).show();
 
                             }
 

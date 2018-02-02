@@ -8,6 +8,8 @@ import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -103,5 +105,35 @@ public class AdjustmentVoucherActivity extends Activity {
 //                startActivity(intent);
             }
         });
+    }
+
+    //menu option
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.option1:
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                finish();
+                startActivity(intent);
+                return true;
+
+            case R.id.option2:
+                pref.edit().clear().commit();
+                Intent intent_logout = new Intent(getApplicationContext(),LoginActivity.class);
+                finish();
+                startActivity(intent_logout);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
