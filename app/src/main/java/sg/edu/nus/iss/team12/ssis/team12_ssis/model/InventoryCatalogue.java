@@ -21,6 +21,7 @@ public class InventoryCatalogue extends HashMap<String,String> {
 
     //for acer ip : 172.17.253.240
     //for surface ip : 172.17.248.45
+    //for Khair pc ip : 172.17.253.34
 
     public InventoryCatalogue(String itemID,String bin,String bufferstocklevel, String catId, String desc,
                               String discon,String level,String reorderlevel,
