@@ -270,7 +270,7 @@ public class ViewDisbursementFormActivity extends Activity {
 
                 @Override
                 protected Void doInBackground(FileInputStream... params) {
-                    HttpFileUpload hfu = new HttpFileUpload("http://172.17.253.240/Team12_SSIS/FormUpload.aspx", h_disbursement.get("DisbursementID"));
+                    HttpFileUpload hfu = new HttpFileUpload("http://192.168.1.15/Team12_SSIS/FormUpload.aspx", h_disbursement.get("DisbursementID"));
                     hfu.Send_Now(fstrm,"test_android.png");
                     return null;
 

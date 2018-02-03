@@ -18,7 +18,7 @@ import java.util.List;
 
 public class InventoryCatalogue extends HashMap<String,String> {
 
-    public static final String URI_SERVICE = "http://172.17.253.240/Team12_SSIS/WebServices/Service.svc/";
+    public static final String URI_SERVICE = "http://192.168.1.15/Team12_SSIS/WebServices/Service.svc/";
 
     //for acer ip : 172.17.253.240
     //for surface ip : 172.17.248.45
