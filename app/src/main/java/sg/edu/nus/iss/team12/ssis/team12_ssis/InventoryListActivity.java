@@ -26,6 +26,9 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 
 import sg.edu.nus.iss.team12.ssis.team12_ssis.model.InventoryCatalogue;
@@ -63,7 +66,8 @@ public class InventoryListActivity extends Activity implements AdapterView.OnIte
             protected void onPostExecute(List<InventoryCatalogue> resultInventoryList) {
                 inventoryCataloguesList = resultInventoryList;
 
-                list.setAdapter(new MyAdaptor_Inventorylist_Row(InventoryListActivity.this, R.layout.row_inventorylist, resultInventoryList));
+
+                list.setAdapter(new MyAdaptor_Inventorylist_Row(InventoryListActivity.this, R.layout.row_inventorylist,sortList(resultInventoryList)));
             }
 
 
@@ -91,7 +95,7 @@ public class InventoryListActivity extends Activity implements AdapterView.OnIte
                                                        protected void onPostExecute(List<InventoryCatalogue> resultInventoryList) {
                                                            collectionCataloguesList = resultInventoryList;
 
-                                                           list.setAdapter(new MyAdaptor_Inventorylist_Row(InventoryListActivity.this, R.layout.row_inventorylist, resultInventoryList));
+                                                           list.setAdapter(new MyAdaptor_Inventorylist_Row(InventoryListActivity.this, R.layout.row_inventorylist, sortList(resultInventoryList)));
                                                        }
 
 
@@ -111,7 +115,7 @@ public class InventoryListActivity extends Activity implements AdapterView.OnIte
                                                        @Override
                                                        protected void onPostExecute(List<InventoryCatalogue> resultInventoryList) {
 
-                                                           list.setAdapter(new MyAdaptor_Inventorylist_Row(InventoryListActivity.this, R.layout.row_inventorylist, resultInventoryList));
+                                                           list.setAdapter(new MyAdaptor_Inventorylist_Row(InventoryListActivity.this, R.layout.row_inventorylist, sortList(resultInventoryList)));
                                                        }
 
 
@@ -200,7 +204,7 @@ public class InventoryListActivity extends Activity implements AdapterView.OnIte
 
                 }
 
-                list.setAdapter(new MyAdaptor_Inventorylist_Row(InventoryListActivity.this, R.layout.row_inventorylist, serachList));
+                list.setAdapter(new MyAdaptor_Inventorylist_Row(InventoryListActivity.this, R.layout.row_inventorylist, sortList(serachList)));
 
                 // 'false' here stops the focus on SearchView (exits it)
                 return false;
@@ -230,7 +234,7 @@ public class InventoryListActivity extends Activity implements AdapterView.OnIte
                     }
 
                 }
-                list.setAdapter(new MyAdaptor_Inventorylist_Row(InventoryListActivity.this, R.layout.row_inventorylist, serachList));
+                list.setAdapter(new MyAdaptor_Inventorylist_Row(InventoryListActivity.this, R.layout.row_inventorylist, sortList(serachList)));
 
                 // 'false' here stops the focus on SearchView (exits it)
                 return false;
@@ -261,6 +265,28 @@ public class InventoryListActivity extends Activity implements AdapterView.OnIte
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+
+    protected List<InventoryCatalogue> sortList(List<InventoryCatalogue> unsortedList)
+    {
+
+        Collections.sort(unsortedList,new Comparator<HashMap<String, String>>() {
+
+            @Override
+            public int compare(HashMap<String, String> o1,
+                               HashMap<String, String> o2) {
+                // TODO Auto-generated method stub
+                String name1 = o1.get("Description");
+                String name2 = o2.get("Description");
+                if (name1 == null)
+                    return -1;
+                return name1.compareTo(name2);
+            }
+
+        });
+
+        return unsortedList;
     }
 
 
