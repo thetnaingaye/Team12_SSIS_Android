@@ -56,14 +56,14 @@ public class InventoryListActivity extends Activity implements AdapterView.OnIte
             protected List<InventoryCatalogue> doInBackground(String... params) {
 
 
-                return InventoryCatalogue.jread(params[0],token);
+                return InventoryCatalogue.jread(params[0], token);
             }
 
             @Override
             protected void onPostExecute(List<InventoryCatalogue> resultInventoryList) {
-                        inventoryCataloguesList = resultInventoryList;
+                inventoryCataloguesList = resultInventoryList;
 
-                     list.setAdapter(new MyAdaptor_Inventorylist_Row(InventoryListActivity.this, R.layout.row_inventorylist, resultInventoryList));
+                list.setAdapter(new MyAdaptor_Inventorylist_Row(InventoryListActivity.this, R.layout.row_inventorylist, resultInventoryList));
             }
 
 
@@ -84,7 +84,7 @@ public class InventoryListActivity extends Activity implements AdapterView.OnIte
                                                        @Override
                                                        protected List<InventoryCatalogue> doInBackground(String... params) {
 
-                                                           return InventoryCatalogue.jread(params[0],token);
+                                                           return InventoryCatalogue.jread(params[0], token);
                                                        }
 
                                                        @Override
@@ -105,7 +105,7 @@ public class InventoryListActivity extends Activity implements AdapterView.OnIte
                                                        @Override
                                                        protected List<InventoryCatalogue> doInBackground(String... params) {
 
-                                                           return InventoryCatalogue.jread(params[0],token);
+                                                           return InventoryCatalogue.jread(params[0], token);
                                                        }
 
                                                        @Override
@@ -155,12 +155,14 @@ public class InventoryListActivity extends Activity implements AdapterView.OnIte
         MenuItemCompat.setOnActionExpandListener(searchMenuItem, new MenuItemCompat.OnActionExpandListener() {
             @Override
             public boolean onMenuItemActionExpand(MenuItem item) {
+                chk.setEnabled(false);
+
                 return true;
             }
 
             @Override
             public boolean onMenuItemActionCollapse(MenuItem item) {
-
+                chk.setEnabled(true);
 
 //                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
 //                startActivity(intent);
@@ -175,39 +177,31 @@ public class InventoryListActivity extends Activity implements AdapterView.OnIte
             // 'true' here keeps the SearchView in focus
             public boolean onQueryTextChange(String newText) {
                 // Directing to SearchActivity with our string query
-                if (newText != null)
-                {
-                    if(chk.isChecked())
-                    {
-                        List<InventoryCatalogue> serachList = new ArrayList<>();
-                        for(InventoryCatalogue i:collectionCataloguesList)
-                        {
-                            if(i.get("Description").toString().toLowerCase().contains(newText.toLowerCase()))
-                            {
+
+                List<InventoryCatalogue> serachList = new ArrayList<>();
+                if (newText != null) {
+                    if (chk.isChecked()) {
+
+                        for (InventoryCatalogue i : collectionCataloguesList) {
+                            if (i.get("Description").toString().toLowerCase().contains(newText.toLowerCase())) {
                                 serachList.add(i);
                             }
                         }
-                        if(serachList.size() != 0)
-                        {
-                            list.setAdapter(new MyAdaptor_Inventorylist_Row(InventoryListActivity.this, R.layout.row_inventorylist, serachList));
-                        }
-                    }else {
-                        List<InventoryCatalogue> serachList = new ArrayList<>();
-                        for(InventoryCatalogue i:inventoryCataloguesList)
-                        {
-                            if(i.get("Description").toString().toLowerCase().contains(newText.toLowerCase()))
-                            {
+
+                    } else {
+
+                        for (InventoryCatalogue i : inventoryCataloguesList) {
+                            if (i.get("Description").toString().toLowerCase().contains(newText.toLowerCase())) {
                                 serachList.add(i);
                             }
-                        }
-                        if(serachList.size() != 0)
-                        {
-                            list.setAdapter(new MyAdaptor_Inventorylist_Row(InventoryListActivity.this, R.layout.row_inventorylist, serachList));
                         }
 
                     }
 
                 }
+
+                list.setAdapter(new MyAdaptor_Inventorylist_Row(InventoryListActivity.this, R.layout.row_inventorylist, serachList));
+
                 // 'false' here stops the focus on SearchView (exits it)
                 return false;
             }
@@ -215,38 +209,29 @@ public class InventoryListActivity extends Activity implements AdapterView.OnIte
             public boolean onQueryTextSubmit(String query) {
 
                 // Directing to SearchActivity with our string query
-                {
-                    if(chk.isChecked())
-                    {
-                        List<InventoryCatalogue> serachList = new ArrayList<>();
-                        for(InventoryCatalogue i:collectionCataloguesList)
-                        {
-                            if(i.get("Description").toString().toLowerCase().contains(query.toLowerCase()))
-                            {
+                List<InventoryCatalogue> serachList = new ArrayList<>();
+                if (query != null) {
+                    if (chk.isChecked()) {
+
+                        for (InventoryCatalogue i : collectionCataloguesList) {
+                            if (i.get("Description").toString().toLowerCase().contains(query.toLowerCase())) {
                                 serachList.add(i);
                             }
                         }
-                        if(serachList.size() != 0)
-                        {
-                            list.setAdapter(new MyAdaptor_Inventorylist_Row(InventoryListActivity.this, R.layout.row_inventorylist, serachList));
-                        }
-                    }else {
-                        List<InventoryCatalogue> serachList = new ArrayList<>();
-                        for(InventoryCatalogue i:inventoryCataloguesList)
-                        {
-                            if(i.get("Description").toString().toLowerCase().contains(query.toLowerCase()))
-                            {
+
+                    } else {
+
+                        for (InventoryCatalogue i : inventoryCataloguesList) {
+                            if (i.get("Description").toString().toLowerCase().contains(query.toLowerCase())) {
                                 serachList.add(i);
                             }
-                        }
-                        if(serachList.size() != 0)
-                        {
-                            list.setAdapter(new MyAdaptor_Inventorylist_Row(InventoryListActivity.this, R.layout.row_inventorylist, serachList));
                         }
 
                     }
 
                 }
+                list.setAdapter(new MyAdaptor_Inventorylist_Row(InventoryListActivity.this, R.layout.row_inventorylist, serachList));
+
                 // 'false' here stops the focus on SearchView (exits it)
                 return false;
             }
@@ -260,7 +245,7 @@ public class InventoryListActivity extends Activity implements AdapterView.OnIte
 
         switch (item.getItemId()) {
             case R.id.option1:
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 finish();
                 startActivity(intent);
@@ -268,7 +253,7 @@ public class InventoryListActivity extends Activity implements AdapterView.OnIte
 
             case R.id.option2:
                 pref.edit().clear().commit();
-                Intent intent_logout = new Intent(getApplicationContext(),LoginActivity.class);
+                Intent intent_logout = new Intent(getApplicationContext(), LoginActivity.class);
                 finish();
                 startActivity(intent_logout);
                 return true;
@@ -277,7 +262,6 @@ public class InventoryListActivity extends Activity implements AdapterView.OnIte
                 return super.onOptionsItemSelected(item);
         }
     }
-
 
 
 }
