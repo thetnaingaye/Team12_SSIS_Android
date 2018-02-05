@@ -55,7 +55,7 @@ public class CollectionListActivity extends Activity implements AdapterView.OnIt
 
         Spinner s =(Spinner) findViewById(R.id.spinner);
         int spinner_index = s.getSelectedItemPosition();
-
+        //population list based on spinner selected item
         s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

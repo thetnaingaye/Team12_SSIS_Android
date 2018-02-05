@@ -46,8 +46,8 @@ public class ViewDisbursementFormActivity extends Activity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         token = pref.getString("tokenKey","token");
-        //Decide whether is it gonna be Sigature-based or PIN-based
-        //Ouuuu Yeah~~!!!
+
+
         setContentView(R.layout.activity_view_disbursement_form);
 
         //setting logo onClick back to home
@@ -158,7 +158,7 @@ public class ViewDisbursementFormActivity extends Activity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
+    //getting back from Signature activity
     @Override
     protected void onResume(){
         super.onResume();
@@ -258,12 +258,12 @@ public class ViewDisbursementFormActivity extends Activity {
 
     public void UploadFile(){
         try {
-            // Set your file path here
+            // getting image file path
 
             final FileInputStream fstrm = new FileInputStream(android.os.Environment.getExternalStorageDirectory().toString()+"/saved_signature/signature.png");
 
 
-            // Set your server page url (and the file title/description)
+            // uploading to url
 
 
             new AsyncTask<FileInputStream, Void, Void>() {

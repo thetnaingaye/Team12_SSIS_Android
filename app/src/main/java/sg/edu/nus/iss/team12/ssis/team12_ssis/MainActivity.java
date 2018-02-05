@@ -37,7 +37,7 @@ public class MainActivity extends Activity {
 
         boolean isClerk = (role.equals("Clerk"));
         boolean isHOD = (role.equals("HOD"));
-
+        //setting correct home page based on Role
         if (isClerk) {
             setContentView(R.layout.activity_main_clerk);
             ImageButton imgBtn = (ImageButton) findViewById(R.id.imageButton_Main);
@@ -95,11 +95,6 @@ public class MainActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
-//            case R.id.option1:
-//                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                startActivity(intent);
-//                return true;
 
             case R.id.option2:
                 pref.edit().clear().commit();

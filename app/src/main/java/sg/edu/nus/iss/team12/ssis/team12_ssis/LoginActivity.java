@@ -63,21 +63,13 @@ public class LoginActivity extends Activity {
                 }.execute(username, password);
 
 
-                //to get the tokenKey, use SharedPreference.getString("tokenKey", "hereJustPutRandomDefaultValue");
-
-//                tokenKey = pref.getString("tokenKey", "defautValue");
-//                department = pref.getString("department", "public");
-//                role = pref.getString("role", "public");
-
-                //start intent here.
-
 
             }
 
         });
 
     }
-
+    //check user validation and setting data in sharedpref
     private void proceed(String token) {
         String check = token.substring(1, 8);
         if (check.equals("Invalid")) {
@@ -105,28 +97,10 @@ public class LoginActivity extends Activity {
             finish();
             startActivity(intent);
 
-//                    Toast t = Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT);
-//            t.show();
+
         }
 
 
-//
-//        if(token.equals("Invalid")) {
-//                            Toast t = Toast.makeText(getApplicationContext(), "Invalid Username/Password", Toast.LENGTH_SHORT);
-//                            t.show();
-//                           //this.cancel(true);
-//                        }
-//                        else{
-//                            String seperator = "/";
-//                            String[] tokenArray = token.split(seperator);
-//                            String tokenKey = tokenArray[0];
-//                            String department = tokenArray[0];
-//                            String role = tokenArray[1];
-//                            SharedPreferences.Editor editor = pref.edit();
-//                            editor.putString("tokenKey", tokenKey);
-//                            editor.putString("department", department);
-//                            editor.putString("role", role);
-//                            editor.commit();
-//                        }
+
     }
 }

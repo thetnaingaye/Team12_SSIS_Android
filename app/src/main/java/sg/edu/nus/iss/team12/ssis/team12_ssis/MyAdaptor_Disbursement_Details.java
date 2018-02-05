@@ -82,16 +82,16 @@ public class MyAdaptor_Disbursement_Details extends ArrayAdapter<DisbursementDet
         textView_reqQty.setText((item.get("ActualQuantity")));
 
         editText_Allocation.setText((item.get("ActualQuantity")));
-
+        //getting new value from edit text and set back to item's value
         editText_Allocation.addTextChangedListener(new TextWatcher() {
 
             public void afterTextChanged(Editable s) {
-                //to put code here
+
             }
 
             public void beforeTextChanged(CharSequence s, int start,
                                           int count, int after) {
-                //to put code here
+
             }
 
             public void onTextChanged(CharSequence s, int start,
@@ -100,7 +100,7 @@ public class MyAdaptor_Disbursement_Details extends ArrayAdapter<DisbursementDet
                 String actqty_str = item.get("ActualQuantity").toString();
                 int input_int = 0;
 
-
+                //Input Validation
                 int actqty = Integer.parseInt(actqty_str);
 
                 if (input.trim().equals("")) {

@@ -67,26 +67,22 @@ public class MyAdaptor_Retrivallist_Row extends ArrayAdapter<RetrivalItem> {
 
             }.execute(uri);
 
-
-
-
-
             TextView textView_reqQty = (TextView) v.findViewById(R.id.textView_RequestedQty_Value);
             textView_reqQty.setText((item.get("RequestedQty")));
 
             editText_Allocation.setText((item.get("ActualQty")));
 
         }
-
+        //getting new value from edit text and set back to item's value
         editText_Allocation.addTextChangedListener(new TextWatcher() {
 
             public void afterTextChanged(Editable s) {
-                //to put code here
+
             }
 
             public void beforeTextChanged(CharSequence s, int start,
                                           int count, int after) {
-                //to put code here
+
             }
 
             public void onTextChanged(CharSequence s, int start,
@@ -99,7 +95,7 @@ public class MyAdaptor_Retrivallist_Row extends ArrayAdapter<RetrivalItem> {
                 String reqStr = item.get("RequestedQty").toString();
 
                 int actqty = Integer.parseInt(reqStr);
-
+                //Input Validation
                 if (input.trim().equals("")) {
                     item.put("ActualQty", "0");
                 } else {

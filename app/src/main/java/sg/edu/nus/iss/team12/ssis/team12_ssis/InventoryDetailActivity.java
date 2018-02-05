@@ -45,7 +45,7 @@ public class InventoryDetailActivity extends Activity {
         final String itemID = item.get("ItemID").toString();
 
         btnAllocate = findViewById(R.id.button_Allocate);
-
+        //for getting aggregated value(unitstoRetrive) of list
         retrivalList = new ArrayList<>();
         String uri = InventoryCatalogue.URI_SERVICE + "GetRelevantListByDept";
         new AsyncTask<String, Void, List<RetrivalItem>>() {
@@ -112,6 +112,7 @@ public class InventoryDetailActivity extends Activity {
         }
     }
 
+    //population of data
     protected  void showDetails(final HashMap<String,String> item)
     {
         TextView textItemCode = (TextView)findViewById(R.id.textView_ItemCode_Value);
@@ -141,7 +142,7 @@ public class InventoryDetailActivity extends Activity {
         textQtyInStock.setText(item.get("UnitsInStock"));
 
 
-
+        //setting correct image and dialog image based on database item values
         ImageButton imgBtn = findViewById(R.id.imageButton_shelf);
         String imgName = item.get("Shelf").toLowerCase();
         String imgLevel = "s"+item.get("Level");

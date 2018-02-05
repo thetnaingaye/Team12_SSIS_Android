@@ -52,7 +52,7 @@ public class InventoryListActivity extends Activity implements AdapterView.OnIte
         setContentView(R.layout.activity_inventory_list);
         list = findViewById(R.id.lv1);
 
-
+        //initial loading of inventory list and store in list to do search
         new AsyncTask<String, Void, List<InventoryCatalogue>>() {
 
             @Override
@@ -77,7 +77,7 @@ public class InventoryListActivity extends Activity implements AdapterView.OnIte
 
 
         chk = findViewById(R.id.checkBox);
-
+        //getting new list based on checkbox event
         chk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
                                            @Override
@@ -141,7 +141,7 @@ public class InventoryListActivity extends Activity implements AdapterView.OnIte
 
     }
 
-    //menu option
+    //menu option with search bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_search, menu);
@@ -267,7 +267,7 @@ public class InventoryListActivity extends Activity implements AdapterView.OnIte
         }
     }
 
-
+    //for sorting list<HastMap> by alphabitacally
     protected List<InventoryCatalogue> sortList(List<InventoryCatalogue> unsortedList)
     {
 
